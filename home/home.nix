@@ -3,6 +3,7 @@
 {
   imports = [
     ./modules/git.nix
+    ./modules/xdg.nix
   ];
   
   home.username = "utyara3";
