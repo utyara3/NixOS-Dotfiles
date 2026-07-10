@@ -10,5 +10,13 @@
     btop
     tree
     fastfetch
+
+    wireplumber
+    brightnessctl
+    playerctl
+    cliphist
+    wl-clipboard
+    obsidian
+    yazi
   ];
 }

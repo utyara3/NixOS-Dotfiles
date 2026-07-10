@@ -14,6 +14,21 @@
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
+  # nix.settings = {
+  #  max-jobs = 1;
+  #  cores = 4;
+  #};
+
+  zramSwap = {
+    enable = true;
+    memoryPercent = 50;
+  };
+
+  swapDevices = [ {
+    device = "/var/lib/swapfile";
+    size = 24 * 1024;
+  } ];
+
   time.timeZone = "Europe/Moscow";
 
   i18n.defaultLocale = "en_US.UTF-8";
@@ -31,4 +46,8 @@
   nixpkgs.config.allowUnfree = true;
 
   system.stateVersion = "26.05";
+
+  virtualisation.docker.enable = true;
+
+  virtualisation.podman.enable = true;
 }
