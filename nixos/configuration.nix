@@ -1,43 +1,30 @@
-{ config, pkgs, ... }:
+# nixos/configutaion.nix
+
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [
     ./hardware-configuration.nix
-    ./packages.nix
-    ./desktop.nix
+
+    # Core system
+    ./boot.nix
+    ./networking.nix
+    ./locale.nix
+    ./swap.nix
     ./users.nix
+    ./packages.nix
+
+    # Desktop
+    ./desktop/display.nix
+    ./desktop/audio.nix
+    ./desktop/fonts.nix
+
+    # Services
+    ./services/virtualisation.nix
+    ./services/happ.nix
   ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.hostName = "nixos";
-  networking.networkmanager.enable = true;
-
-  # nix.settings = {
-  #  max-jobs = 1;
-  #  cores = 4;
-  #};
-
-  zramSwap = {
-    enable = true;
-    memoryPercent = 50;
-  };
-
-  swapDevices = [ {
-    device = "/var/lib/swapfile";
-    size = 24 * 1024;
-  } ];
-
-  time.timeZone = "Europe/Moscow";
-
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocales = [
-    "en_US.UTF-8/UTF-8"
-    "ru_RU.UTF-8/UTF-8"
-  ];
-
+  # Nix settings
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
@@ -46,10 +33,4 @@
   nixpkgs.config.allowUnfree = true;
 
   system.stateVersion = "26.05";
-
-  services.happ.enable = true;
-
-  virtualisation.docker.enable = true;
-
-  virtualisation.podman.enable = true;
 }

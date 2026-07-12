@@ -1,3 +1,5 @@
+# home/home.nix
+
 { config, pkgs, inputs, ... }:
 
 {
@@ -7,6 +9,9 @@
     ./modules/xdg.nix
     ./modules/niri.nix
     ./modules/theme.nix
+    ./modules/kitty.nix
+
+    ./packages # default.nix
   ];
   
   home.username = "utyara3";
@@ -20,19 +25,5 @@
   };
 
   programs.home-manager.enable = true;
-
-  home.packages = with pkgs; [
-    firefox
-    neovim
-    discord
-
-    inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
-    inputs.ayugram-desktop.packages."${pkgs.stdenv.hostPlatform.system}".default
-
-    podman
-    docker
-    docker-compose
-    lazydocker
-  ];
 }
 

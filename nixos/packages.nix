@@ -2,8 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
-    xwayland-satellite
-
+    # Core utilities
     git
     vim
     wget
@@ -13,12 +12,8 @@
     tree
     fastfetch
 
-    wireplumber
-    brightnessctl
-    playerctl
-    cliphist
+    # Wayland essentials
     wl-clipboard
-    obsidian
-    yazi
+    xwayland-satellite
   ];
 }

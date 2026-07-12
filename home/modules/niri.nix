@@ -5,8 +5,6 @@ let
   vpnApp = "happ";
   fileManager = "kitty -e yazi";
   browser = "zen";
-  # menu = "rofi";
-  cliphistcmd = "rofi -modi clipboard:~/.local/bin/cliphist-rofi-img.sh -show clipboard";
 in
 {
   programs.niri = {
@@ -56,7 +54,7 @@ in
         "Mod+L".action.spawn = [ "noctalia" "msg" "session" "lock" ];
         "Mod+M".action.spawn = [ "wlogout" ];
         "Mod+O".action.spawn = [ "obsidian" ];
-        "Mod+N".action.spawn = [ "swaync-client" "-t" "-sw" ];
+        "Mod+N".action.spawn = [ "noctalia" "msg" "panel-toggle" "notification" ];
         "Mod+W".action.spawn = [ "noctalia" "msg" "panel-toggle" "wallpaper" ];
 
         "Mod+V".action.toggle-window-floating = [ ];
