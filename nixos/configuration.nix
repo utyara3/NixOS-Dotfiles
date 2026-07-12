@@ -23,6 +23,7 @@
     # Services
     ./services/virtualisation.nix
     ./services/happ.nix
+    ./services/power.nix
   ];
 
   # Nix settings

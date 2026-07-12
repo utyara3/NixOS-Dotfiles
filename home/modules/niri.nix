@@ -1,3 +1,5 @@
+# home/modules.niri
+
 { config, pkgs, ... }:
 
 let
@@ -23,16 +25,30 @@ in
           options = "grp:alt_shift_toggle";
         };
 
+        # Смещение мыши в центр при фокусе окна
 	warp-mouse-to-focus = {
 	  enable = true;
 	  mode = "center-xy-always";
 	};
 
+        # Автофокус окна при наведении мышкой
 	focus-follows-mouse = {
 	  enable = true;
 	  max-scroll-amount = "1%";
 	};
       };
+
+      layout = {
+        gaps = 12;
+	border = disable;
+      };
+
+      window-rules = [
+	{
+	  matches = [{ app-id = "kitty"; }];
+	  draw-border-with-background = false;
+	}
+      ];
 
       spawn-at-startup = [
         { command = [ "noctalia" ]; }

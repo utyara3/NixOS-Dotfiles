@@ -7,7 +7,7 @@
     settings = {
       # Background
       background_opacity = "0.65";
-      background_blur = "1";
+      # background_blur = "1";
 
       # Advance
       term = "xterm-kitty";
@@ -55,6 +55,9 @@
       tab_bar_align = "center";
       active_tab_font_style = "bold";
       inactive_tab_font_style = "normal";
+
+      # Disable audio
+      enable_audio_bell = "no";
 
       # Close window without confirm
       confirm_os_window_close = "0";

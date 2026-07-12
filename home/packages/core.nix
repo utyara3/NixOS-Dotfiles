@@ -8,6 +8,8 @@
     brightnessctl
     playerctl
     cliphist
+    eza
+    tty-clock
 
     # File manager
     yazi

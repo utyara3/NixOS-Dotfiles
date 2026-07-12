@@ -10,6 +10,7 @@
     ./modules/niri.nix
     ./modules/theme.nix
     ./modules/kitty.nix
+    ./modules/zsh.nix
 
     ./packages # default.nix
   ];

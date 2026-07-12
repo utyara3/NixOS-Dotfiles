@@ -12,5 +12,8 @@
     docker
     docker-compose
     lazydocker
+
+    # Uv
+    uv
   ];
 }

@@ -11,6 +11,8 @@
     btop
     tree
     fastfetch
+    acpi
+    upower
 
     # Wayland essentials
     wl-clipboard
