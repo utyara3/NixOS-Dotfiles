@@ -11,6 +11,7 @@
     ./modules/theme.nix
     ./modules/kitty.nix
     ./modules/zsh.nix
+    ./modules/fastfetch.nix
 
     ./packages # default.nix
   ];

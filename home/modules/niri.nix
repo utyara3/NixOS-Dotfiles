@@ -40,10 +40,39 @@ in
 
       layout = {
         gaps = 12;
-	border = disable;
+	
+	focus-ring = {
+	  width = 2;
+
+	  active.color = "#0099ff";
+	  inactive.color = "#505050";
+	};
+
+	shadow = {
+	  enable = true;
+	  softness = 30;
+	  spread = 4;
+	  offset = { x = 0; y = 0; };
+
+	  color = "#0099ff99";
+	  inactive-color = "#00000055";
+
+	  draw-behind-window = false;
+	};
+
       };
 
       window-rules = [
+	{
+  	  geometry-corner-radius = {
+            top-left = 12.0;
+            top-right = 12.0;
+            bottom-left = 12.0;
+            bottom-right = 12.0;
+          };
+
+	  clip-to-geometry = true;
+	}
 	{
 	  matches = [{ app-id = "kitty"; }];
 	  draw-border-with-background = false;
