@@ -45,7 +45,6 @@
         specialArgs = { inherit inputs system; };
 
         modules = [
-          ./nixos/hardware-configuration.nix
           ./nixos/configuration.nix
 
           "${inputs.happ-nixos}/happ-module.nix"

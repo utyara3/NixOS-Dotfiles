@@ -55,6 +55,9 @@
       tab_bar_align = "center";
       active_tab_font_style = "bold";
       inactive_tab_font_style = "normal";
+
+      # Close window without confirm
+      confirm_os_window_close = "0";
     };
   };
 }

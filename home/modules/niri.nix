@@ -54,7 +54,7 @@ in
         "Mod+L".action.spawn = [ "noctalia" "msg" "session" "lock" ];
         "Mod+M".action.spawn = [ "wlogout" ];
         "Mod+O".action.spawn = [ "obsidian" ];
-        "Mod+N".action.spawn = [ "noctalia" "msg" "panel-toggle" "notification" ];
+        "Mod+N".action.spawn = [ "noctalia" "msg" "panel-toggle" "control-center" "notifications"];
         "Mod+W".action.spawn = [ "noctalia" "msg" "panel-toggle" "wallpaper" ];
 
         "Mod+V".action.toggle-window-floating = [ ];

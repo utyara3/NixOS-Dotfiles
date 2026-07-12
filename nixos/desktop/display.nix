@@ -17,5 +17,5 @@
   services.xserver.xkb.options = "grp:alt_shift_toggle";
 
   # GNOME (если понадобится - раскомментировать)
-  services.desktopManager.gnome.enable = true;
+  # services.desktopManager.gnome.enable = true;
 }

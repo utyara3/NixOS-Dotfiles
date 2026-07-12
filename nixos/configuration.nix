@@ -16,6 +16,7 @@
 
     # Desktop
     ./desktop/display.nix
+    ./desktop/niri.nix
     ./desktop/audio.nix
     ./desktop/fonts.nix
 
