@@ -16,7 +16,7 @@
   programs.niri.enable = true;
 
   environment.systemPackages = [
-    inputs.noctalia.packages.${pkgs.system}.default
+    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.kitty
   ];
 }

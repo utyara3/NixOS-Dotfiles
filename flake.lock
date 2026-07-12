@@ -19,6 +19,22 @@
         "type": "github"
       }
     },
+    "happ-nixos": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1782859482,
+        "narHash": "sha256-Mmc7E3qFgCpVRWocs9yFlpSdRK/c5XPENJ51E+f+pac=",
+        "owner": "MrShitFox",
+        "repo": "happ-nixos",
+        "rev": "42fbaedab18654a237c11104ec4fd1de4810f63f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MrShitFox",
+        "repo": "happ-nixos",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -26,16 +42,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1783221248,
-        "narHash": "sha256-ESQnuNHEDChsB4IxoLRhscVahqkDWkTb+qdIz8euYt4=",
+        "lastModified": 1783744526,
+        "narHash": "sha256-yYVxW+uIbCx0Nt870fbErQbz+b2+3Gwpppe+JbIU+Co=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "af2beae5f0fae0a4310cc0e6aef2572f56090353",
+        "rev": "2afec152df4e284d264f8489d16004c264aebf4c",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
-        "ref": "release-26.05",
+        "ref": "master",
         "repo": "home-manager",
         "type": "github"
       }
@@ -52,11 +68,11 @@
         "xwayland-satellite-unstable": "xwayland-satellite-unstable"
       },
       "locked": {
-        "lastModified": 1783526091,
-        "narHash": "sha256-Zkkil0e8Wg5BcBmJkWJwBXlETefYQbYKw72xJUIBPLE=",
+        "lastModified": 1783691974,
+        "narHash": "sha256-6iB3Ti6I1aCkOZO5mtkteEse/DAEoQVtLJGcGBgNNLU=",
         "owner": "sodiboo",
         "repo": "niri-flake",
-        "rev": "a24d4c0dce53fd8dbeb9ad20411e282c7b9875f1",
+        "rev": "8341f767e055e216343f2383b7c7618b9215b193",
         "type": "github"
       },
       "original": {
@@ -132,16 +148,16 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1783389287,
-        "narHash": "sha256-0xIy4dVLqq47rA+mRy0hXDfjhQd4E5PoIns/RmB7nR4=",
+        "lastModified": 1783522502,
+        "narHash": "sha256-iffAls3iaNTyJC2faYcUXSI+Gp02cDjYl+MygxKl2GI=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "0ad6f47ea4fe188f4bc8f0380f93ae8523337c6c",
+        "rev": "0bb7ec54c8483066ec9d7720e780a5caa71f8612",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "nixos-26.05",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -153,11 +169,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783607582,
-        "narHash": "sha256-dV8UU9tlJbCyKTjJ6kiV+pcdPYFAPOrCA1euHYqhZTY=",
+        "lastModified": 1783783058,
+        "narHash": "sha256-mzef/lDjw6PzpAsuN/Y9Y30BhHJe1/4VMFmr5xxuDGs=",
         "owner": "noctalia-dev",
         "repo": "noctalia",
-        "rev": "3f52dcc15f9bb96e29fd9e9b9b4af206fc133655",
+        "rev": "c80f660a787192b0558f62c8c0bb9c50c2b03d7a",
         "type": "github"
       },
       "original": {
@@ -170,6 +186,7 @@
     "root": {
       "inputs": {
         "ayugram-desktop": "ayugram-desktop",
+        "happ-nixos": "happ-nixos",
         "home-manager": "home-manager",
         "niri": "niri",
         "nixpkgs": "nixpkgs_2",
@@ -238,11 +255,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783063092,
-        "narHash": "sha256-H6lM+h8+ZT25uWJwmYkER5yj5RJ9DP2++n5um/XH3J0=",
+        "lastModified": 1783668749,
+        "narHash": "sha256-EDJjJYGT5pQKTBqmz+OA2sqE20kjj6mP699JFGDzse4=",
         "owner": "youwen5",
         "repo": "zen-browser-flake",
-        "rev": "36b24209358c82e0ea5404ba003ae8dc37334c86",
+        "rev": "e8041a3571e8cadb57dc18a3d6362d753510b94a",
         "type": "github"
       },
       "original": {

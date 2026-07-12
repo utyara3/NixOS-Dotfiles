@@ -38,6 +38,7 @@ in
 
       spawn-at-startup = [
         { command = [ "noctalia" ]; }
+	{ command = [ "xwayland-satellite" ]; }
       ];
 
       binds = {
@@ -50,13 +51,13 @@ in
         "Mod+B".action.spawn = [ "${browser}" ];
         # "Mod+R".action.spawn = [ "sh" "-c" "${menu}" ];
         "Mod+R".action.spawn = [ "noctalia" "msg" "panel-toggle" "launcher" ];
-	"Mod+C".action.spawn = [ "sh" "-c" "${cliphistcmd}" ];
+	"Mod+C".action.spawn = [ "noctalia" "msg" "panel-toggle" "clipboard" ];
 
-        "Mod+L".action.spawn = [ "hyprlock" ];
+        "Mod+L".action.spawn = [ "noctalia" "msg" "session" "lock" ];
         "Mod+M".action.spawn = [ "wlogout" ];
         "Mod+O".action.spawn = [ "obsidian" ];
         "Mod+N".action.spawn = [ "swaync-client" "-t" "-sw" ];
-        "Mod+W".action.spawn = [ "sh" "-c" "~/.local/bin/rofi-wallpaper-change.sh" ];
+        "Mod+W".action.spawn = [ "noctalia" "msg" "panel-toggle" "wallpaper" ];
 
         "Mod+V".action.toggle-window-floating = [ ];
         "Mod+P".action.switch-preset-column-width = [ ]; 
@@ -65,8 +66,8 @@ in
 	"Mod+Shift+F".action.expand-column-to-available-width = [ ];
 	"Mod+Tab".action.toggle-overview = [ ];
 
-	"Mod+Minus".action.set-column-width = "-10%";
-	"Mod+Equal".action.set-column-width = "+10%";
+	"Mod+Minus".action.set-column-width = "-5%";
+	"Mod+Equal".action.set-column-width = "+5%";
 
         "Mod+Left".action.focus-column-left = [ ];
         "Mod+Right".action.focus-column-right = [ ];

@@ -24,11 +24,12 @@
   home.packages = with pkgs; [
     firefox
     neovim
-    distrobox
+    discord
 
-    inputs.zen-browser.packages."${pkgs.system}".default
-    inputs.ayugram-desktop.packages."${pkgs.system}".default
+    inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
+    inputs.ayugram-desktop.packages."${pkgs.stdenv.hostPlatform.system}".default
 
+    podman
     docker
     docker-compose
     lazydocker

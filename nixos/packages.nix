@@ -2,6 +2,8 @@
 
 {
   environment.systemPackages = with pkgs; [
+    xwayland-satellite
+
     git
     vim
     wget
