@@ -32,6 +32,15 @@
     "flakes"
   ];
 
+  hardware.bluetooth.enable = true;
+  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
+
+  programs.steam = {
+    enable = true;
+  };
+  programs.gamescope.enable = true;
+
   nixpkgs.config.allowUnfree = true;
 
   system.stateVersion = "26.05";

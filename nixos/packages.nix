@@ -7,12 +7,17 @@
     vim
     wget
     curl
+    bluez
     htop
     btop
     tree
     fastfetch
     acpi
     upower
+    ripgrep
+    direnv
+    nix-direnv
+    uv
 
     # Wayland essentials
     wl-clipboard

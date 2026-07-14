@@ -12,6 +12,7 @@
     ./modules/kitty.nix
     ./modules/zsh.nix
     ./modules/fastfetch.nix
+    ./modules/direnv.nix
 
     ./packages # default.nix
   ];
