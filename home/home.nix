@@ -5,6 +5,8 @@
 {
   imports = [
     inputs.niri.homeModules.niri
+    inputs.nixvim.homeModules.nixvim
+    
     ./modules/git.nix
     ./modules/xdg.nix
     ./modules/niri.nix
@@ -13,6 +15,7 @@
     ./modules/zsh.nix
     ./modules/fastfetch.nix
     ./modules/direnv.nix
+    ./modules/nixvim.nix
 
     ./packages # default.nix
   ];

@@ -1,5 +1,5 @@
 {
-  description = "utyara3 NixOS Configuration";
+  description = "utyara3's NixOS Configuration";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -31,6 +31,11 @@
     happ-nixos = {
       url = "github:MrShitFox/happ-nixos";
       flake = false;
+    };
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
   };
