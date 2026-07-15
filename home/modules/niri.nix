@@ -1,6 +1,6 @@
 # home/modules.niri
 
-{ config, pkgs, ... }:
+{ ... }:
 
 let
   terminal = "kitty";
@@ -15,8 +15,8 @@ in
     settings = {
       cursor = {
         theme = "Bibata-Modern-Classic";
-	size = 24;
-	hide-on-key-press = true;
+        size = 24;
+        hide-on-key-press = true;
       };
 
       input = {
@@ -26,91 +26,133 @@ in
         };
 
         # Смещение мыши в центр при фокусе окна
-	warp-mouse-to-focus = {
-	  enable = true;
-	  mode = "center-xy-always";
-	};
+        warp-mouse-to-focus = {
+          enable = true;
+          mode = "center-xy-always";
+        };
 
         # Автофокус окна при наведении мышкой
-	focus-follows-mouse = {
-	  enable = true;
-	  max-scroll-amount = "1%";
-	};
+        focus-follows-mouse = {
+          enable = true;
+          max-scroll-amount = "1%";
+        };
       };
 
       layout = {
         gaps = 12;
-	
-	focus-ring = {
-	  width = 2;
 
-	  active.color = "#0099ff";
-	  inactive.color = "#505050";
-	};
+        focus-ring = {
+          width = 2;
 
-	shadow = {
-	  enable = true;
-	  softness = 30;
-	  spread = 4;
-	  offset = { x = 0; y = 0; };
+          active.color = "#0099ff";
+          inactive.color = "#505050";
+        };
 
-	  color = "#0099ff99";
-	  inactive-color = "#00000055";
+        shadow = {
+          enable = true;
+          softness = 30;
+          spread = 4;
+          offset = {
+            x = 0;
+            y = 0;
+          };
 
-	  draw-behind-window = false;
-	};
+          color = "#0099ff99";
+          inactive-color = "#00000055";
+
+          draw-behind-window = false;
+        };
 
       };
 
       window-rules = [
-	{
-  	  geometry-corner-radius = {
+        {
+          geometry-corner-radius = {
             top-left = 12.0;
             top-right = 12.0;
             bottom-left = 12.0;
             bottom-right = 12.0;
           };
 
-	  clip-to-geometry = true;
-	}
-	{
-	  matches = [{ app-id = "kitty"; }];
-	  draw-border-with-background = false;
-	}
+          clip-to-geometry = true;
+        }
+        {
+          matches = [ { app-id = "kitty"; } ];
+          draw-border-with-background = false;
+        }
       ];
 
       spawn-at-startup = [
         { command = [ "noctalia" ]; }
-	{ command = [ "xwayland-satellite" ]; }
+        { command = [ "xwayland-satellite" ]; }
       ];
 
       binds = {
-        
+
         "Mod+Shift+Slash".action.show-hotkey-overlay = [ ];
-        
+
         "Mod+T".action.spawn = [ "${terminal}" ];
-        "Mod+H".action.spawn = [ "sh" "-c" "${vpnApp}" ];
-        "Mod+E".action.spawn = [ "sh" "-c" "${fileManager}" ];
+        "Mod+H".action.spawn = [
+          "sh"
+          "-c"
+          "${vpnApp}"
+        ];
+        "Mod+E".action.spawn = [
+          "sh"
+          "-c"
+          "${fileManager}"
+        ];
         "Mod+B".action.spawn = [ "${browser}" ];
         # "Mod+R".action.spawn = [ "sh" "-c" "${menu}" ];
-        "Mod+R".action.spawn = [ "noctalia" "msg" "panel-toggle" "launcher" ];
-	"Mod+C".action.spawn = [ "noctalia" "msg" "panel-toggle" "clipboard" ];
+        "Mod+R".action.spawn = [
+          "noctalia"
+          "msg"
+          "panel-toggle"
+          "launcher"
+        ];
+        "Mod+C".action.spawn = [
+          "noctalia"
+          "msg"
+          "panel-toggle"
+          "clipboard"
+        ];
 
-        "Mod+L".action.spawn = [ "noctalia" "msg" "session" "lock" ];
-        "Mod+M".action.spawn = [ "wlogout" ];
+        "Mod+L".action.spawn = [
+          "noctalia"
+          "msg"
+          "session"
+          "lock"
+        ];
+        "Mod+M".action.spawn = [
+          "noctalia"
+          "msg"
+          "panel-toggle"
+          "session"
+        ];
         "Mod+O".action.spawn = [ "obsidian" ];
-        "Mod+N".action.spawn = [ "noctalia" "msg" "panel-toggle" "control-center" "notifications"];
-        "Mod+W".action.spawn = [ "noctalia" "msg" "panel-toggle" "wallpaper" ];
+        "Mod+N".action.spawn = [
+          "noctalia"
+          "msg"
+          "panel-toggle"
+          "control-center"
+          "notifications"
+        ];
+        "Mod+W".action.spawn = [
+          "noctalia"
+          "msg"
+          "panel-toggle"
+          "wallpaper"
+        ];
 
         "Mod+V".action.toggle-window-floating = [ ];
-        "Mod+P".action.switch-preset-column-width = [ ]; 
+        "Mod+P".action.switch-preset-column-width = [ ];
         "Mod+Q".action.close-window = [ ];
-        "Mod+F".action.maximize-column = [ ]; 
-	"Mod+Shift+F".action.expand-column-to-available-width = [ ];
-	"Mod+Tab".action.toggle-overview = [ ];
+        "Mod+F".action.maximize-column = [ ];
+        "Mod+Shift+F".action.expand-column-to-available-width = [ ];
+        "Mod+Tab".action.toggle-overview = [ ];
 
-	"Mod+Minus".action.set-column-width = "-5%";
-	"Mod+Equal".action.set-column-width = "+5%";
+        "Mod+Minus".action.set-column-width = "-5%";
+        "Mod+Equal".action.set-column-width = "+5%";
 
         "Mod+Left".action.focus-column-left = [ ];
         "Mod+Right".action.focus-column-right = [ ];
@@ -133,7 +175,6 @@ in
         "Mod+9".action.focus-workspace = 9;
         "Mod+0".action.focus-workspace = 10;
 
-        
         "Mod+Shift+1".action.move-column-to-workspace = 1;
         "Mod+Shift+2".action.move-column-to-workspace = 2;
         "Mod+Shift+3".action.move-column-to-workspace = 3;
@@ -145,29 +186,73 @@ in
         "Mod+Shift+9".action.move-column-to-workspace = 9;
         "Mod+Shift+0".action.move-column-to-workspace = 10;
 
-        
         "Mod+WheelScrollDown".action.focus-workspace-down = [ ];
         "Mod+WheelScrollUp".action.focus-workspace-up = [ ];
 
-        
         "XF86AudioRaiseVolume".allow-inhibiting = false;
-        "XF86AudioRaiseVolume".action.spawn = [ "wpctl" "set-volume" "-l" "1" "@DEFAULT_AUDIO_SINK@" "5%+" ];
+        "XF86AudioRaiseVolume".action.spawn = [
+          "wpctl"
+          "set-volume"
+          "-l"
+          "1"
+          "@DEFAULT_AUDIO_SINK@"
+          "5%+"
+        ];
         "XF86AudioLowerVolume".allow-inhibiting = false;
-        "XF86AudioLowerVolume".action.spawn = [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-" ];
+        "XF86AudioLowerVolume".action.spawn = [
+          "wpctl"
+          "set-volume"
+          "@DEFAULT_AUDIO_SINK@"
+          "5%-"
+        ];
         "XF86AudioMute".allow-inhibiting = false;
-        "XF86AudioMute".action.spawn = [ "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle" ];
+        "XF86AudioMute".action.spawn = [
+          "wpctl"
+          "set-mute"
+          "@DEFAULT_AUDIO_SINK@"
+          "toggle"
+        ];
         "XF86AudioMicMute".allow-inhibiting = false;
-        "XF86AudioMicMute".action.spawn = [ "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle" ];
-        
-        "XF86MonBrightnessUp".allow-inhibiting = false;
-        "XF86MonBrightnessUp".action.spawn = [ "brightnessctl" "-e4" "-n2" "set" "5%+" ];
-        "XF86MonBrightnessDown".allow-inhibiting = false;
-        "XF86MonBrightnessDown".action.spawn = [ "brightnessctl" "-e4" "-n2" "set" "5%-" ];
+        "XF86AudioMicMute".action.spawn = [
+          "wpctl"
+          "set-mute"
+          "@DEFAULT_AUDIO_SOURCE@"
+          "toggle"
+        ];
 
-        "XF86AudioNext".action.spawn = [ "playerctl" "next" ];
-        "XF86AudioPause".action.spawn = [ "playerctl" "play-pause" ];
-        "XF86AudioPlay".action.spawn = [ "playerctl" "play-pause" ];
-        "XF86AudioPrev".action.spawn = [ "playerctl" "previous" ];
+        "XF86MonBrightnessUp".allow-inhibiting = false;
+        "XF86MonBrightnessUp".action.spawn = [
+          "brightnessctl"
+          "-e4"
+          "-n2"
+          "set"
+          "5%+"
+        ];
+        "XF86MonBrightnessDown".allow-inhibiting = false;
+        "XF86MonBrightnessDown".action.spawn = [
+          "brightnessctl"
+          "-e4"
+          "-n2"
+          "set"
+          "5%-"
+        ];
+
+        "XF86AudioNext".action.spawn = [
+          "playerctl"
+          "next"
+        ];
+        "XF86AudioPause".action.spawn = [
+          "playerctl"
+          "play-pause"
+        ];
+        "XF86AudioPlay".action.spawn = [
+          "playerctl"
+          "play-pause"
+        ];
+        "XF86AudioPrev".action.spawn = [
+          "playerctl"
+          "previous"
+        ];
 
         "Print".action.screenshot = [ ];
         "Shift+Print".action.screenshot-screen = [ ];
@@ -178,4 +263,3 @@ in
     };
   };
 }
-

@@ -7,6 +7,8 @@
     inputs.niri.homeModules.niri
     inputs.nixvim.homeModules.nixvim
 
+    ./modules/noctalia/noctalia.nix
+
     ./modules/git.nix
     ./modules/xdg.nix
     ./modules/niri.nix

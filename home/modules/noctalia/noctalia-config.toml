@@ -1,0 +1,184 @@
+[audio]
+enable_overdrive = true
+
+[bar.default]
+background_opacity = 0.84999998100101948
+border = "primary"
+center = [ "date", "clock", "caffeine" ]
+end = [ "ram", "tray", "network", "bluetooth", "notifications", "volume", "brightness", "battery", "session" ]
+margin_edge = 3
+margin_ends = 200
+panel_overlap = 0
+start = [ "launcher", "wallpaper", "workspaces", "media", "audio_visualizer" ]
+widget_spacing = 12
+
+[battery]
+warning_threshold = 20
+
+    [battery.device."/org/freedesktop/UPower/devices/headset_dev_98_34_8C_F6_6A_1D"]
+    warning_threshold = 20
+
+[control_center]
+sidebar = "full"
+sidebar_section = "full"
+
+[desktop_widgets]
+enabled = false
+schema_version = 2
+widget_order = []
+
+    [desktop_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [desktop_widgets.widget]
+
+[idle]
+pre_action_fade_seconds = 5
+
+[location]
+auto_locate = true
+
+[lockscreen]
+blur_intensity = 0.39999999105930328
+blurred_desktop = true
+
+[lockscreen_widgets]
+enabled = true
+schema_version = 2
+widget_order = [
+    "lockscreen-login-box@eDP-1",
+    "lockscreen-widget-0000000000000001",
+    "lockscreen-widget-0000000000000002",
+    "lockscreen-widget-0000000000000003",
+    "lockscreen-widget-0000000000000004"
+]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
+    box_height = 70.0
+    box_width = 400.0
+    cx = 960.0
+    cy = 712.0
+    output = "eDP-1"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        input_opacity = 1.0
+        input_radius = 6.0
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_password_hint = true
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000001]
+    box_height = 240.0
+    box_width = 464.0
+    cx = 960.0
+    cy = 232.0
+    output = "eDP-1"
+    rotation = 0.0
+    type = "clock"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000001.settings]
+        background_opacity = 0.0
+        center_text = true
+        clock_style = "digital"
+        format = "{:%H:%M:%S}"
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000002]
+    box_height = 400.0
+    box_width = 512.0
+    cx = 336.0
+    cy = 640.0
+    output = "eDP-1"
+    rotation = 0.0
+    type = "sysmon"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000002.settings]
+        stat = "cpu_usage"
+        stat2 = "cpu_temp"
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000003]
+    box_height = 80.0
+    box_width = 224.0
+    cx = 960.0
+    cy = 600.0
+    output = "eDP-1"
+    rotation = 0.0
+    type = "label"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000003.settings]
+        description = ""
+        opacity = 1.0
+        title = "utyara3"
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000004]
+    box_height = 368.0
+    box_width = 496.0
+    cx = 1584.0
+    cy = 640.0
+    output = "eDP-1"
+    rotation = 0.0
+    type = "weather"
+
+[plugins]
+enabled = [ "noctalia/bongocat" ]
+
+[shell]
+app_icon_color = "on_surface"
+app_icon_colorize = true
+lang = "en"
+niri_overview_type_to_launch_enabled = true
+screen_time_enabled = true
+time_format = "{:%H:%M:%S}"
+
+    [shell.launcher]
+    categories = false
+
+    [shell.panel]
+    transparency_mode = "glass"
+
+    [shell.screenshot]
+    directory = "/home/utyara3/Pictures/Screenshots"
+
+[theme]
+builtin = "Gruvbox"
+community_palette = "Oxocarbon"
+mode = "dark"
+source = "wallpaper"
+wallpaper_scheme = "m3-content"
+
+    [theme.templates]
+    builtin_ids = [ "btop", "cava", "gtk3", "gtk4", "kitty", "niri", "qt" ]
+    community_ids = [ "zen-browser", "neovim", "obsidian", "vscode", "discord", "steam", "telegram" ]
+
+[wallpaper]
+directory = "/home/utyara3/Pictures/Images/Wallpapers"
+
+    [wallpaper.default]
+    path = "/home/utyara3/Pictures/Images/Wallpapers/skulls.png"
+
+    [wallpaper.last]
+    path = "/home/utyara3/Pictures/Images/Wallpapers/skulls.png"
+
+    [wallpaper.monitors.eDP-1]
+    path = "/home/utyara3/Pictures/Images/Wallpapers/skulls.png"
+
+[widget.battery]
+enabled = true
+
+[widget.cat]
+type = "noctalia/bongocat:cat"
+
+[widget.network]
+show_label = false
