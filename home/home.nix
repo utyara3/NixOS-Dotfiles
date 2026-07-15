@@ -1,12 +1,12 @@
 # home/home.nix
 
-{ config, pkgs, inputs, ... }:
+{ inputs, ... }:
 
 {
   imports = [
     inputs.niri.homeModules.niri
     inputs.nixvim.homeModules.nixvim
-    
+
     ./modules/git.nix
     ./modules/xdg.nix
     ./modules/niri.nix
@@ -16,10 +16,11 @@
     ./modules/fastfetch.nix
     ./modules/direnv.nix
     ./modules/nixvim.nix
+    ./modules/qalc.nix
 
     ./packages # default.nix
   ];
-  
+
   home.username = "utyara3";
   home.homeDirectory = "/home/utyara3";
   home.stateVersion = "26.05";
@@ -32,4 +33,3 @@
 
   programs.home-manager.enable = true;
 }
-

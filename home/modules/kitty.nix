@@ -1,4 +1,6 @@
-{ config, pkgs, ...}:
+# home/modules/kitty.nix
+
+{ ... }:
 
 {
   programs.kitty = {
@@ -37,7 +39,7 @@
 
       # Mouse
       mouse_hide_wait = "3";
-      
+
       # Window Layout
       remember_window_size = "yes";
       initial_window_width = "1200";
@@ -64,4 +66,3 @@
     };
   };
 }
-

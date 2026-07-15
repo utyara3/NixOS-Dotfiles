@@ -1,4 +1,6 @@
-{ config, pkgs, ... }:
+# home/modules/fastfetch.nix
+
+{ ... }:
 
 {
   programs.fastfetch = {

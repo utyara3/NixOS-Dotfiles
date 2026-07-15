@@ -1,4 +1,6 @@
-{ config, pkgs, ... }:
+# home/modules/direnv.nix
+
+{ ... }:
 
 {
   programs.direnv = {

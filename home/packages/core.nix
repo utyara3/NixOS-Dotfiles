@@ -11,6 +11,9 @@
     eza
     tty-clock
 
+    # Calculator
+    qalculate-gtk
+
     # File manager
     yazi
 
