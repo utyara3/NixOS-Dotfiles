@@ -19,6 +19,7 @@
     ./modules/direnv.nix
     ./modules/nixvim.nix
     ./modules/qalc.nix
+    ./modules/obs.nix
 
     ./packages # default.nix
   ];

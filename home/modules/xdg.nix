@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
   xdg.userDirs = {
@@ -10,5 +10,17 @@
     pictures = "${config.home.homeDirectory}/Pictures";
     music = "${config.home.homeDirectory}/Music";
     desktop = "${config.home.homeDirectory}/Desktop";
+  };
+
+  xdg.portal = {
+    enable = true;
+    config = {
+      common = {
+        default = [
+          "gnome"
+          "gtk"
+        ];
+      };
+    };
   };
 }

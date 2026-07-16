@@ -1,10 +1,15 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    
+
     # Возвращаем рабочий синтаксис Home Manager для автодополнений
     enableAutosuggestions = true;
     syntaxHighlighting.enable = true;
@@ -40,7 +45,7 @@
       ll = "eza --long --icons --group-directories-first --git";
       la = "eza --all --icons --group-directories-first --git";
       tree = "eza --tree --icons --group-directories-first --git";
-      ssrpg = "cd /home/utyara3/.local/share/Steam/steamapps/common/Stone\ Story\ RPG/Martian\ Rex,\ Inc_/Stone\ Story/76561198016524242/Stonescript/utyara3";
+      ssrpg = "cd '/home/utyara3/.local/share/Steam/steamapps/common/Stone Story RPG/Martian Rex, Inc_/Stone Story/76561198016524242/Stonescript/utyara3'";
       vact = "source .venv/bin/activate";
       hist = "history -i | grep $(date +%F)";
       clc = "fn -ln -1 | wl-copy";
@@ -83,9 +88,12 @@
       '')
       ''
         # Код, который выполнится следом (бывший initExtra)
-        
+
         # Бинд клавиш
         bindkey '^H' backward-kill-word
+
+        # Direnv
+        eval "$(direnv hook zsh)"
 
         # Автодополнение для uvx (если пакет uv установлен)
         if command -v uvx &> /dev/null; then
@@ -98,4 +106,3 @@
     ];
   };
 }
-

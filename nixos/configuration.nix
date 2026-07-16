@@ -1,6 +1,11 @@
 # nixos/configutaion.nix
 
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -19,6 +24,7 @@
     ./desktop/niri.nix
     ./desktop/audio.nix
     ./desktop/fonts.nix
+    ./desktop/direnv.nix
 
     # Services
     ./services/virtualisation.nix
@@ -32,8 +38,18 @@
     "flakes"
   ];
 
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+  };
+
   hardware.bluetooth.enable = true;
-  hardware.graphics.enable = true;
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+    ];
+  };
 
   programs.steam = {
     enable = true;
