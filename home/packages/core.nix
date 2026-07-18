@@ -19,6 +19,9 @@
 
     # Apps
     obsidian
+    gimp
+    libreoffice
+    zathura
 
     # Panel (Noctalia)
     inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default

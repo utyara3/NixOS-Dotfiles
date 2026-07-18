@@ -24,7 +24,6 @@
     ./desktop/niri.nix
     ./desktop/audio.nix
     ./desktop/fonts.nix
-    ./desktop/direnv.nix
 
     # Services
     ./services/virtualisation.nix

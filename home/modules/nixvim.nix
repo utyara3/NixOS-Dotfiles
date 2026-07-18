@@ -84,6 +84,20 @@
         action = "<cmd>Telescope marks<cr>";
         options.desc = "Jump to bookmarks";
       }
+      {
+        mode = "n";
+        key = "<leader>um"; # u — от слова UI / Utilities, m — Markdown
+        action = "<cmd>RenderMarkdown toggle<cr>";
+        options.desc = "Toggle Markdown Rendering";
+      }
+
+      # Вывод ошибки/диагностики под курсором во всплывающем окне (как в AstroNvim)
+      {
+        mode = "n";
+        key = "<leader>ld"; # l — LSP, d — Diagnostics
+        action.__raw = "function() vim.diagnostic.open_float() end";
+        options.desc = "Hover diagnostics";
+      }
     ];
 
     colorschemes.catppuccin = {
@@ -133,6 +147,16 @@
       treesitter = {
         enable = true;
         nixGrammars = true;
+      };
+
+      # 5. Inline-стилизация Markdown прямо внутри терминала
+      render-markdown = {
+        enable = true;
+        settings = {
+          # Плагин скрывает символы разметки вроде `##` или `**`
+          # Эта опция возвращает их отображение на текущей строке, где стоит курсор
+          anti_conceal.enabled = true;
+        };
       };
 
       cmp = {

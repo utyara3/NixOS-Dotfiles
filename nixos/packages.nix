@@ -7,6 +7,9 @@
     vim
     wget
     curl
+    unzip
+    imv
+    mpv
     bluez
     htop
     btop

@@ -23,4 +23,15 @@
       };
     };
   };
+
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "application/pdf" = [ "zathura.desktop" ];
+      "image/png" = [ "imv.desktop" ];
+      "image/jpeg" = [ "imv.desktop" ];
+      "video/mp4" = [ "mpv.desktop" ];
+      "text/plain" = [ "nvim.desktop" ];
+    };
+  };
 }
