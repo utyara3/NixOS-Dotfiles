@@ -1,9 +1,7 @@
 # nixos/configutaion.nix
 
 {
-  config,
   pkgs,
-  inputs,
   ...
 }:
 
@@ -42,12 +40,15 @@
     extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
   };
 
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = pkgs.lib.mkForce false;
-  environment.etc."bluetooth/main.conf".text = ''
-    [Policy]
-    AutoEnable=false
-  '';
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = false;
+    settings = {
+      Policy = {
+        AutoEnable = false;
+      };
+    };
+  };
 
   hardware.graphics = {
     enable = true;
@@ -56,9 +57,13 @@
     ];
   };
 
-  programs.steam = {
-    enable = true;
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
   };
+
+  programs.steam.enable = true;
   programs.gamescope.enable = true;
 
   nixpkgs.config.allowUnfree = true;
