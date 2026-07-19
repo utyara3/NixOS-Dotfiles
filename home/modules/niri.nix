@@ -19,6 +19,10 @@ in
         hide-on-key-press = true;
       };
 
+      hotkey-overlay = {
+        skip-at-startup = true;
+      };
+
       input = {
         keyboard.xkb = {
           layout = "us,ru";
