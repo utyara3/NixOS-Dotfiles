@@ -20,6 +20,7 @@
     ./modules/nixvim.nix
     ./modules/qalc.nix
     ./modules/obs.nix
+    ./modules/yazi.nix
 
     ./packages # default.nix
   ];

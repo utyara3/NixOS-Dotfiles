@@ -43,6 +43,12 @@
   };
 
   hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = pkgs.lib.mkForce false;
+  environment.etc."bluetooth/main.conf".text = ''
+    [Policy]
+    AutoEnable=false
+  '';
+
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [

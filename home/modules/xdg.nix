@@ -27,7 +27,7 @@
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      "application/pdf" = [ "zathura.desktop" ];
+      "application/pdf" = [ "org.pwmt.zathura-pdf-poppler.desktop" ];
       "image/png" = [ "imv.desktop" ];
       "image/jpeg" = [ "imv.desktop" ];
       "video/mp4" = [ "mpv.desktop" ];
