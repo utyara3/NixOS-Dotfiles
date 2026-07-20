@@ -1,6 +1,10 @@
 # home/packages/core.nix
 
-{ config, pkgs, inputs, ...}:
+{
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   home.packages = with pkgs; [
@@ -10,6 +14,9 @@
     cliphist
     eza
     tty-clock
+    cbonsai
+    cmatrix
+    pipes-rs
 
     # Calculator
     qalculate-gtk

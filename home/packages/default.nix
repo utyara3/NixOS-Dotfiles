@@ -1,6 +1,6 @@
 # home/packages/default.nix
 
-{ config, pkgs, inputs, ... }:
+{ ... }:
 
 {
   imports = [

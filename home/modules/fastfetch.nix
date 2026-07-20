@@ -1,5 +1,3 @@
-# home/modules/fastfetch.nix
-
 { ... }:
 
 {
@@ -7,3 +5,4 @@
     enable = true;
   };
 }
+
