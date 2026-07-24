@@ -51,6 +51,7 @@
       clc = "fn -ln -1 | wl-copy";
       notes = "nvim ~/Documents/helper/";
       rebuild = "sudo nixos-rebuild switch --flake .";
+      n = "nvim";
     };
 
     # Настройка Oh My Zsh
