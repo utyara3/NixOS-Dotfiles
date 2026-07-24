@@ -95,6 +95,8 @@ in
 
         "Mod+Shift+Slash".action.show-hotkey-overlay = [ ];
 
+        "Mod+A".action.spawn = [ "AyuGram" ];
+
         "Mod+T".action.spawn = [ "${terminal}" ];
         "Mod+H".action.spawn = [
           "sh"
@@ -134,6 +136,7 @@ in
           "session"
         ];
         "Mod+O".action.spawn = [ "obsidian" ];
+        "Mod+Shift+O".action.spawn = [ "obs" ];
         "Mod+N".action.spawn = [
           "noctalia"
           "msg"
