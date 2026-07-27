@@ -23,12 +23,15 @@
       relativenumber = true;
       shiftwidth = 2;
       tabstop = 2;
+      softtabstop = 2; # Улучшает работу клавиши Backspace при удалении отступов
       expandtab = true;
-      smartindent = true;
+
+      # smartindent УДАЛЕН. Он ломал отступы в фигурных скобках.
+
       termguicolors = true;
       clipboard = "unnamedplus";
-      signcolumn = "yes"; # Всегда держать колонку слева открытой (чтобы код не прыгал при появлении ошибок)
-      scrolloff = 8; # Оставлять 8 строк снизу/сверху при скролле
+      signcolumn = "yes";
+      scrolloff = 8;
     };
 
     keymaps = [
@@ -59,7 +62,7 @@
         options.desc = "Toggle Explorer";
       }
 
-      # Поиск (добавили недостающие для экрана Alpha)
+      # Поиск
       {
         mode = "n";
         key = "<leader>ff";
@@ -86,17 +89,52 @@
       }
       {
         mode = "n";
-        key = "<leader>um"; # u — от слова UI / Utilities, m — Markdown
+        key = "<leader>um";
         action = "<cmd>RenderMarkdown toggle<cr>";
         options.desc = "Toggle Markdown Rendering";
       }
 
-      # Вывод ошибки/диагностики под курсором во всплывающем окне (как в AstroNvim)
+      # Диагностика
       {
         mode = "n";
-        key = "<leader>ld"; # l — LSP, d — Diagnostics
+        key = "<leader>ld";
         action.__raw = "function() vim.diagnostic.open_float() end";
         options.desc = "Hover diagnostics";
+      }
+
+      # 🔥 НОВЫЕ СВЕРХПОЛЕЗНЫЕ БИНДЫ ДЛЯ СКОРОСТИ:
+      # Быстрое сохранение файла через Ctrl+S во всех режимах
+      {
+        mode = [
+          "n"
+          "i"
+          "v"
+        ];
+        key = "<C-s>";
+        action = "<cmd>w<cr>";
+        options.desc = "Save file";
+      }
+
+      # Перемещение выделенных строк вверх/вниз (Alt+j / Alt+k) — как в VS Code
+      {
+        mode = "v";
+        key = "J";
+        action = ":m '>+1<CR>gv=gv";
+        options.desc = "Move line down";
+      }
+      {
+        mode = "v";
+        key = "K";
+        action = ":m '<-2<CR>gv=gv";
+        options.desc = "Move line up";
+      }
+
+      # При очистке поиска (ESC) убирать подсветку найденных слов
+      {
+        mode = "n";
+        key = "<esc>";
+        action = "<cmd>noh<cr>";
+        options.desc = "Clear search highlight";
       }
     ];
 
@@ -111,31 +149,22 @@
       web-devicons.enable = true;
       telescope.enable = true;
       which-key.enable = true;
-
-      # 1. Автозакрытие скобок, кавычек и тегов
       nvim-autopairs.enable = true;
-
-      # 2. Подсветка изменений Git на полях (зеленые/красные полосы)
       gitsigns.enable = true;
 
-      # 3. Красивый стартовый экран (Alpha)
       alpha = {
         enable = true;
-        theme = "dashboard"; # Готовая тема с кнопками быстрой навигации
+        theme = "dashboard";
       };
 
-      # 4. Прокачанный файловый менеджер Neo-tree
       neo-tree = {
         enable = true;
         settings = {
           close_if_last_window = true;
           popup_border_style = "rounded";
           git_status_async = true;
-
           filesystem = {
-            follow_current_file = {
-              enabled = true;
-            };
+            follow_current_file.enabled = true;
             filtered_items = {
               hide_dotfiles = false;
               hide_gitignored = false;
@@ -147,16 +176,13 @@
       treesitter = {
         enable = true;
         nixGrammars = true;
+        # 🔥 Умные отступы на базе синтаксического дерева кода
+        settings.indent.enable = true;
       };
 
-      # 5. Inline-стилизация Markdown прямо внутри терминала
       render-markdown = {
         enable = true;
-        settings = {
-          # Плагин скрывает символы разметки вроде `##` или `**`
-          # Эта опция возвращает их отображение на текущей строке, где стоит курсор
-          anti_conceal.enabled = true;
-        };
+        settings.anti_conceal.enabled = true;
       };
 
       cmp = {
@@ -184,7 +210,24 @@
         };
       };
 
-      lsp-format.enable = true;
+      # 🔥 lsp-format заменен на более современный и гибкий conform-nvim
+      # Он идеально свяжет Ruff и автоматическое форматирование при сохранении
+      conform-nvim = {
+        enable = true;
+        settings = {
+          format_on_save = {
+            lsp_fallback = true;
+            timeout_ms = 500;
+          };
+          formatters_by_ft = {
+            python = [
+              "ruff_format"
+              "ruff_fix"
+            ];
+            nix = [ "nixpkgs-fmt" ];
+          };
+        };
+      };
 
       lsp = {
         enable = true;
@@ -199,7 +242,13 @@
 
         servers = {
           nil_ls.enable = true;
-          pyright.enable = true;
+
+          # Настройка Pyright, чтобы он не конфликтовал с Ruff
+          pyright = {
+            enable = true;
+            settings.python.analysis.ignore = [ "*" ]; # Отключаем базовый линтинг Pyright, отдавая его Ruff
+          };
+
           ruff.enable = true;
         };
       };

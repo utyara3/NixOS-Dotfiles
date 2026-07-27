@@ -30,10 +30,22 @@
   ];
 
   # Nix settings
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix.settings = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+
+    auto-optimise-store = true;
+
+    trusted-users = [
+      "root"
+      "@wheel"
+    ];
+
+    keep-outputs = true;
+    keep-derivations = true;
+  };
 
   xdg.portal = {
     enable = true;
@@ -61,6 +73,17 @@
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 7d";
+  };
+
+  system.autoUpgrade = {
+    enable = true;
+    dates = "weekly";
+    flake = "/home/utyara3/nixos-config";
+    flags = [
+      "--update-input"
+      "nixpkgs"
+      "-L"
+    ];
   };
 
   programs.steam.enable = true;

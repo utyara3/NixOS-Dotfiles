@@ -1,6 +1,6 @@
 # nixos/desktop/display.nix
 
-{ config, pkgs, ...}:
+{ config, pkgs, ... }:
 
 {
   # Нужно для того чтобы Happ (и прочие) запускались

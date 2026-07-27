@@ -3,20 +3,56 @@
 {
   programs.yazi = {
     enable = true;
-    
+
     settings = {
       opener = {
-        pdf = [ { run = "zathura \"$@\""; block = true; desc = "Zathura"; } ];
-        image = [ { run = "imv \"$@\""; detach = true; desc = "IMV"; } ];
-        video = [ { run = "mpv \"$@\""; detach = true; desc = "MPV"; } ];
-        text = [ { run = "nvim \"$@\""; block = true; desc = "Neovim"; } ];
+        pdf = [
+          {
+            run = "zathura \"$@\"";
+            block = true;
+            desc = "Zathura";
+          }
+        ];
+        image = [
+          {
+            run = "imv \"$@\"";
+            detach = true;
+            desc = "IMV";
+          }
+        ];
+        video = [
+          {
+            run = "mpv \"$@\"";
+            detach = true;
+            desc = "MPV";
+          }
+        ];
+        text = [
+          {
+            run = "nvim \"$@\"";
+            block = true;
+            desc = "Neovim";
+          }
+        ];
       };
       open = {
         prepend_rules = [
-          { mime = "application/pdf"; use = "pdf"; }
-          { mime = "image/*"; use = "image"; }
-          { mime = "video/*"; use = "video"; }
-          { mime = "text/*"; use = "text"; }
+          {
+            mime = "application/pdf";
+            use = "pdf";
+          }
+          {
+            mime = "image/*";
+            use = "image";
+          }
+          {
+            mime = "video/*";
+            use = "video";
+          }
+          {
+            mime = "text/*";
+            use = "text";
+          }
         ];
       };
     };
@@ -30,7 +66,7 @@
             desc = "Extract here";
           }
           {
-            on = [ "<S-Enter>" ]; 
+            on = [ "<S-Enter>" ];
             run = "plugin extract --args='--subdir'";
             desc = "Extract into a subdirectory named after archive";
           }
@@ -45,4 +81,3 @@
     };
   };
 }
-

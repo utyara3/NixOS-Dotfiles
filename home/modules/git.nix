@@ -8,7 +8,7 @@
     settings = {
       user = {
         name = "utyara3";
-	      email = "prorok2018pro@gmail.com";
+        email = "prorok2018pro@gmail.com";
       };
       init.defaultBranch = "main";
     };

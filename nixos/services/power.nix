@@ -1,6 +1,6 @@
 # nixos/services/power.nix
 
-{ config, pkgs, ...}:
+{ config, pkgs, ... }:
 
 {
   services.upower.enable = true;

@@ -1,5 +1,8 @@
 { pkgs, ... }:
 
+let
+  nr-rebuild = import ./services/rebuild-script.nix { inherit pkgs; };
+in
 {
   environment.systemPackages = with pkgs; [
     # Core utilities
@@ -25,5 +28,7 @@
     # Wayland essentials
     wl-clipboard
     xwayland-satellite
+
+    nr-rebuild
   ];
 }
