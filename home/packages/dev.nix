@@ -7,7 +7,11 @@
     # Editor
     # neovim
     (code-cursor.override {
-      commandLineArgs = "--password-store=\"gnome-keyring\"";
+      commandLineArgs = [
+        "--password-store=gnome-keyring"
+        "--ozone-platform-hint=auto"
+        "--enable-features=WaylandWindowDecorations"
+      ];
     })
 
     # Containers

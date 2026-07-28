@@ -87,6 +87,12 @@ in
       ];
 
       spawn-at-startup = [
+        {
+          command = [
+            "dbus-update-activation-environment"
+            "--all"
+          ];
+        }
         { command = [ "noctalia" ]; }
         { command = [ "xwayland-satellite" ]; }
       ];
