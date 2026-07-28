@@ -1,6 +1,6 @@
 # home/modules.niri
 
-{ ... }:
+{ pkgs, ... }:
 
 let
   terminal = "kitty";
@@ -268,5 +268,14 @@ in
 
       prefer-no-csd = true;
     };
+  };
+
+  services.gnome-keyring = {
+    enable = true;
+    components = [
+      "pkcs11"
+      "secrets"
+      "ssh"
+    ];
   };
 }

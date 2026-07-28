@@ -89,6 +89,8 @@
   programs.steam.enable = true;
   programs.gamescope.enable = true;
 
+  services.gnome.gnome-keyring.enable = true;
+
   nixpkgs.config.allowUnfree = true;
 
   system.stateVersion = "26.05";
