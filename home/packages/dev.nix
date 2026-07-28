@@ -6,6 +6,7 @@
   home.packages = with pkgs; [
     # Editor
     # neovim
+    code-cursor
 
     # Containers
     podman
