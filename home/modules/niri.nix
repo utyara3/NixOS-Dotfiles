@@ -87,12 +87,6 @@ in
       ];
 
       spawn-at-startup = [
-        {
-          command = [
-            "dbus-update-activation-environment"
-            "--all"
-          ];
-        }
         { command = [ "noctalia" ]; }
         { command = [ "xwayland-satellite" ]; }
       ];
@@ -274,14 +268,5 @@ in
 
       prefer-no-csd = true;
     };
-  };
-
-  services.gnome-keyring = {
-    enable = true;
-    components = [
-      "pkcs11"
-      "secrets"
-      "ssh"
-    ];
   };
 }
