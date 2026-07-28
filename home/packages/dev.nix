@@ -6,7 +6,9 @@
   home.packages = with pkgs; [
     # Editor
     # neovim
-    code-cursor
+    (code-cursor.override {
+      commandLineArgs = "--password-store=\"gnome-keyring\"";
+    })
 
     # Containers
     podman
