@@ -24,6 +24,7 @@ in
     direnv
     nix-direnv
     uv
+    powertop
 
     # Wayland essentials
     wl-clipboard

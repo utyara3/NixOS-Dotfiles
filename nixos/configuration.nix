@@ -27,6 +27,7 @@
     ./services/virtualisation.nix
     ./services/happ.nix
     ./services/power.nix
+    ./services/tlp.nix
   ];
 
   # Nix settings
