@@ -196,8 +196,8 @@
           ];
           mapping = {
             "<CR>" = "cmp.mapping.confirm({ select = true })";
-            "<Tab>" = "cmp.mapping.select_next_item()";
-            "<S-Tab>" = "cmp.mapping.select_prev_item()";
+            "<S-Tab>" = "cmp.mapping.select_next_item()";
+            "<C-Tab>" = "cmp.mapping.select_prev_item()";
           };
         };
       };
