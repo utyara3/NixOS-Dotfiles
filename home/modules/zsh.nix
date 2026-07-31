@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   lib,
   ...
@@ -11,7 +10,7 @@
     enableCompletion = true;
 
     # Возвращаем рабочий синтаксис Home Manager для автодополнений
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
     # Системные переменные окружения для пользователя
