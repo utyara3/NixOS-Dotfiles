@@ -104,7 +104,6 @@
         options.desc = "Hover diagnostics";
       }
 
-      # 🔥 Быстрое сохранение файла через Ctrl+S во всех режимах
       {
         mode = [
           "n"
@@ -116,7 +115,6 @@
         options.desc = "Save file";
       }
 
-      # Перемещение выделенных строк вверх/вниз (Alt+j / Alt+k) — как в VS Code
       {
         mode = "v";
         key = "J";
@@ -186,7 +184,7 @@
       };
 
       supermaven = {
-        enable = false; # Изменено на false, чтобы не было конфликтов по кнопке Tab
+        enable = true;
         settings = {
           keymaps = {
             accept_suggestion = "<Tab>";
@@ -204,7 +202,6 @@
         autoEnableSources = true;
         settings = {
           sources = [
-            { name = "codeium"; } # Codeium теперь также отображается в выпадающем списке подсказок
             { name = "nvim_lsp"; }
             { name = "path"; }
             { name = "buffer"; }
