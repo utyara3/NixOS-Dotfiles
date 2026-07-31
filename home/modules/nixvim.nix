@@ -10,6 +10,8 @@
     defaultEditor = true;
     nixpkgs.source = inputs.nixpkgs;
 
+    nixpkgs.config.allowUnfree = true;
+
     viAlias = true;
     vimAlias = true;
 
@@ -102,8 +104,7 @@
         options.desc = "Hover diagnostics";
       }
 
-      # 🔥 НОВЫЕ СВЕРХПОЛЕЗНЫЕ БИНДЫ ДЛЯ СКОРОСТИ:
-      # Быстрое сохранение файла через Ctrl+S во всех режимах
+      # 🔥 Быстрое сохранение файла через Ctrl+S во всех режимах
       {
         mode = [
           "n"
@@ -176,7 +177,6 @@
       treesitter = {
         enable = true;
         nixGrammars = true;
-        # 🔥 Умные отступы на базе синтаксического дерева кода
         settings.indent.enable = true;
       };
 
@@ -185,11 +185,43 @@
         settings.anti_conceal.enabled = true;
       };
 
+      windsurf-nvim = {
+        enable = true;
+        settings = {
+          enable_chat = false;
+          virtual_text = {
+            enabled = true;
+            key_bindings = {
+              accept = "<Tab>";
+              clear = "<C-]>";
+              next = "<M-.]>";
+              prev = "<M-[>";
+            };
+          };
+        };
+      };
+
+      # Старый плагин Supermaven (закомментирован, отключен)
+      # supermaven = {
+      #   enable = false; # Изменено на false, чтобы не было конфликтов по кнопке Tab
+      #   settings = {
+      #     keymaps = {
+      #       accept_suggestion = "<Tab>";
+      #       clear_suggestion = "<C-]>";
+      #       accept_word = "<C-j>";
+      #     };
+      #     ignore_filetypes = {
+      #       log = true;
+      #     };
+      #   };
+      # };
+
       cmp = {
         enable = true;
         autoEnableSources = true;
         settings = {
           sources = [
+            { name = "codeium"; } # Codeium теперь также отображается в выпадающем списке подсказок
             { name = "nvim_lsp"; }
             { name = "path"; }
             { name = "buffer"; }
@@ -210,8 +242,6 @@
         };
       };
 
-      # 🔥 lsp-format заменен на более современный и гибкий conform-nvim
-      # Он идеально свяжет Ruff и автоматическое форматирование при сохранении
       conform-nvim = {
         enable = true;
         settings = {
@@ -243,27 +273,12 @@
         servers = {
           nil_ls.enable = true;
 
-          # Настройка Pyright, чтобы он не конфликтовал с Ruff
           pyright = {
             enable = true;
-            settings.python.analysis.ignore = [ "*" ]; # Отключаем базовый линтинг Pyright, отдавая его Ruff
+            settings.python.analysis.ignore = [ "*" ];
           };
 
           ruff.enable = true;
-        };
-      };
-
-      supermaven = {
-        enable = true;
-        settings = {
-          keymaps = {
-            accept_suggestion = "<Tab>";
-            clear_suggestion = "<C-]>";
-            accept_word = "<C-j>";
-          };
-          ignore_filetypes = {
-            log = true;
-          };
         };
       };
     };
