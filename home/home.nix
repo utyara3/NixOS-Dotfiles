@@ -21,6 +21,7 @@
     ./modules/qalc.nix
     ./modules/obs.nix
     ./modules/yazi.nix
+    ./modules/zed.nix
 
     ./packages # default.nix
   ];
