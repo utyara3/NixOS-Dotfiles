@@ -185,36 +185,19 @@
         settings.anti_conceal.enabled = true;
       };
 
-      windsurf-nvim = {
-        enable = true;
+      supermaven = {
+        enable = false; # Изменено на false, чтобы не было конфликтов по кнопке Tab
         settings = {
-          enable_chat = false;
-          virtual_text = {
-            enabled = true;
-            key_bindings = {
-              accept = "<Tab>";
-              clear = "<C-]>";
-              next = "<M-.]>";
-              prev = "<M-[>";
-            };
+          keymaps = {
+            accept_suggestion = "<Tab>";
+            clear_suggestion = "<C-]>";
+            accept_word = "<C-j>";
+          };
+          ignore_filetypes = {
+            log = true;
           };
         };
       };
-
-      # Старый плагин Supermaven (закомментирован, отключен)
-      # supermaven = {
-      #   enable = false; # Изменено на false, чтобы не было конфликтов по кнопке Tab
-      #   settings = {
-      #     keymaps = {
-      #       accept_suggestion = "<Tab>";
-      #       clear_suggestion = "<C-]>";
-      #       accept_word = "<C-j>";
-      #     };
-      #     ignore_filetypes = {
-      #       log = true;
-      #     };
-      #   };
-      # };
 
       cmp = {
         enable = true;
