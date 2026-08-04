@@ -25,6 +25,7 @@ in
     nix-direnv
     uv
     powertop
+    translate-shell
 
     # Wayland essentials
     wl-clipboard
