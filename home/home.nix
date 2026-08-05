@@ -22,6 +22,7 @@
     ./modules/obs.nix
     ./modules/yazi.nix
     ./modules/zed.nix
+    ./modules/foot.nix
 
     ./packages # default.nix
   ];
