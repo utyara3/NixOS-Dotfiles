@@ -37,6 +37,7 @@
     ];
 
     shellAliases = {
+      tree = "eza --tree --icons --group-directories-first --git";
       ssrpg = "cd '/home/utyara3/.local/share/Steam/steamapps/common/Stone Story RPG/Martian Rex, Inc_/Stone Story/76561198016524242/Stonescript/utyara3'";
       vact = "source .venv/bin/activate";
       hist = "history -i | grep $(date +%F)";

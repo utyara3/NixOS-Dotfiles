@@ -135,6 +135,14 @@
         action = "<cmd>noh<cr>";
         options.desc = "Clear search highlight";
       }
+
+      # lazygit
+      {
+        mode = "n";
+        key = "<leader>gg";
+        action = "<cmd>LazyGit<cr>";
+        options.desc = "Toggle LazyGit";
+      }
     ];
 
     colorschemes.catppuccin = {
@@ -150,6 +158,8 @@
       which-key.enable = true;
       nvim-autopairs.enable = true;
       gitsigns.enable = true;
+      lazygit.enable = true;
+      indent-blankline.enable = true;
 
       alpha = {
         enable = true;
@@ -207,7 +217,7 @@
             { name = "buffer"; }
           ];
           mapping = {
-            "<CR>" = "cmp.mapping.confirm({ select = true })";
+            "<CR>" = "cmp.mapping.confirm({ select = false})";
             "<S-Tab>" = "cmp.mapping.select_next_item()";
             "<C-Tab>" = "cmp.mapping.select_prev_item()";
           };
@@ -251,8 +261,17 @@
         };
 
         servers = {
-          nil_ls.enable = true;
-
+          nixd = {
+            enable = true;
+            settings = {
+              formatting.command = [ "nixpkgs-fmt" ];
+              nixpkgs.expr = "import <nixpkgs> { }";
+              options = {
+                nixos.expr = "(builtins.getFlake \"/home/utyara3/nixos-config\").nixosConfigurations.nixos.options";
+                home-manager.expr = "(builtins.getFlake \"/home/utyara3/nixos-config\").homeConfigurations.utyara3.options";
+              };
+            };
+          };
           pyright = {
             enable = true;
             settings.python.analysis.ignore = [ "*" ];
