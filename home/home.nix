@@ -1,6 +1,6 @@
 # home/home.nix
 
-{ inputs, ... }:
+{ inputs, lib, ... }:
 
 {
   imports = [
@@ -9,23 +9,15 @@
 
     ./modules/noctalia/noctalia.nix
 
-    ./modules/git.nix
-    ./modules/xdg.nix
-    ./modules/niri.nix
-    ./modules/theme.nix
-    ./modules/kitty.nix
-    ./modules/zsh.nix
-    ./modules/fastfetch.nix
-    ./modules/direnv.nix
-    ./modules/nixvim.nix
-    ./modules/qalc.nix
-    ./modules/obs.nix
-    ./modules/yazi.nix
-    ./modules/zed.nix
-    ./modules/foot.nix
-
-    ./packages # default.nix
-  ];
+    ./packages
+  ]
+  ++ (builtins.map (name: ./modules + "/${name}") (
+    builtins.attrNames (
+      lib.attrsets.filterAttrs (name: type: type == "regular" && lib.strings.hasSuffix ".nix" name) (
+        builtins.readDir ./modules
+      )
+    )
+  ));
 
   home.username = "utyara3";
   home.homeDirectory = "/home/utyara3";
