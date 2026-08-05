@@ -14,18 +14,17 @@ pkgs.writeScriptBin "nr" ''
   echo "🧹 Форматируем измененные файлы..."
   nix fmt . &>/dev/null || true
 
-  # Индексируем изменения для флейка до сборки
-  git add -A
+  # 🔥 ИСПРАВЛЕНО: Глушим вывод Git, чтобы он не засирал терминал метками и ссылками
+  git add -A &>/dev/null
 
   if ! git diff --cached --quiet || ! git diff --quiet; then
     echo "📝 Обнаружены изменения в конфигурации:"
     git status --short
   fi
 
-  # 🔥 ЗАМЕНЯЕМ НА NH OS: Запуск сборки через красивый хелпер
-  # nh сам запросит пароль sudo, когда это потребуется для активации системы
+  # Запуск nh без sudo — граф и статистика остаются, мусор уходит
   echo "🚀 Запуск nh os $ACTION..."
-  nh os "$ACTION"
+  nh os "$ACTION" "$CONFIG_DIR"
 
   if [ "$ACTION" = "switch" ] || [ "$ACTION" = "boot" ]; then
     if ! git diff --cached --quiet || ! git diff --quiet; then
