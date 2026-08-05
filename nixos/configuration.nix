@@ -87,8 +87,14 @@
     ];
   };
 
-  programs.steam.enable = true;
-  programs.gamescope.enable = true;
+  programs = {
+    steam.enable = true;
+    gamescope.enable = true;
+    nh = {
+      enable = true;
+      flake = "/home/utyara3/nixos-config";
+    };
+  };
 
   services.gnome.gnome-keyring.enable = true;
 

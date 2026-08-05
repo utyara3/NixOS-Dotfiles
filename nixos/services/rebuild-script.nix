@@ -11,12 +11,10 @@ pkgs.writeScriptBin "nr" ''
   echo "🔄 Переходим в $CONFIG_DIR..."
   cd "$CONFIG_DIR"
 
-  # 🔥 Нативно форматируем все Nix файлы через встроенный CLI
   echo "🧹 Форматируем измененные файлы..."
   nix fmt . &>/dev/null || true
 
-  # 🛠️ СТРАХОВКА ДЛЯ FLAKES: Индексируем абсолютно все новые и измененные файлы ДО сборки.
-  # Без этого Nix Flakes просто проигнорирует новые файлы и изменения в них.
+  # Индексируем изменения для флейка до сборки
   git add -A
 
   if ! git diff --cached --quiet || ! git diff --quiet; then
@@ -24,17 +22,17 @@ pkgs.writeScriptBin "nr" ''
     git status --short
   fi
 
-  echo "🚀 Запуск nixos-rebuild $ACTION..."
-  sudo nixos-rebuild "$ACTION" --flake .
+  # 🔥 ЗАМЕНЯЕМ НА NH OS: Запуск сборки через красивый хелпер
+  # nh сам запросит пароль sudo, когда это потребуется для активации системы
+  echo "🚀 Запуск nh os $ACTION..."
+  nh os "$ACTION"
 
   if [ "$ACTION" = "switch" ] || [ "$ACTION" = "boot" ]; then
-    # Проверяем, есть ли что коммитить (включая уже добавленное в индекс через git add)
     if ! git diff --cached --quiet || ! git diff --quiet; then
       echo "💾 Сборка успешна! Создаем автокоммит..."
       GENERATION=$(nixos-rebuild list-generations 2>/dev/null | grep 'True$' | awk '{print $1}')
       COMMIT_MSG="nixos-rebuild: generation $GENERATION ($(date '+%Y-%m-%d %H:%M'))"
       
-      # Файлы уже добавлены в начале, просто комитим их
       git commit -m "$COMMIT_MSG"
       echo "✅ Изменения автоматически сохранены в Git: '$COMMIT_MSG'"
     else
