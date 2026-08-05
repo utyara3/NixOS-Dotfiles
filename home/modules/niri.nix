@@ -3,7 +3,7 @@
 { ... }:
 
 let
-  terminal = "foot"; # kitty;
+  terminal = "kitty";
   vpnApp = "happ";
   fileManager = "kitty -e yazi";
   browser = "zen";
