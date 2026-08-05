@@ -9,9 +9,9 @@
 
     settings = {
       main = {
-        font = "Fira Code Nerd Font:size=12";
+        font = "Fira Code Nerd Font:size=12:rgba=rbg:hintstyle=slight";
         initial-window-size-chars = "120x35";
-        pad = "0x0";
+        pad = "10x10";
         term = "xterm-256color";
       };
 

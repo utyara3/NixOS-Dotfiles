@@ -1,9 +1,9 @@
 # home/modules.niri
 
-{ pkgs, ... }:
+{ ... }:
 
 let
-  terminal = "kitty";
+  terminal = "foot"; # kitty;
   vpnApp = "happ";
   fileManager = "kitty -e yazi";
   browser = "zen";
