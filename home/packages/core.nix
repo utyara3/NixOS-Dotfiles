@@ -29,6 +29,7 @@
     gimp
     libreoffice
     zathura
+    sing-box
 
     # Panel (Noctalia)
     inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
