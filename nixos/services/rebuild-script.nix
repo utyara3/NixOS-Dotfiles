@@ -24,7 +24,7 @@ pkgs.writeScriptBin "nr" ''
 
   # Запуск nh без sudo — граф и статистика остаются, мусор уходит
   echo "🚀 Запуск nh os $ACTION..."
-  nh os "$ACTION" "$CONFIG_DIR"
+  nh os "$ACTION" "$CONFIG_DIR" 2>&1 | grep -v -E '^[^> ]+>'
 
   if [ "$ACTION" = "switch" ] || [ "$ACTION" = "boot" ]; then
     if ! git diff --cached --quiet || ! git diff --quiet; then

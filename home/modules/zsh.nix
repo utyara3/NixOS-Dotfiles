@@ -1,6 +1,7 @@
 # home/modules/zsh.nix
 {
   pkgs,
+  lib,
   ...
 }:
 
@@ -67,28 +68,29 @@
       }
     ];
 
-    initExtraFirst = ''
-      # Instant Prompt для p10k
-      if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
-        source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
-      fi
-    '';
+    initContent = lib.mkMerge [
+      (lib.mkBefore ''
+        # Instant Prompt для p10k
+        if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
+          source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
+        fi
+      '')
+      ''
+        # Бинд клавиш
+        bindkey '^H' backward-kill-word
 
-    initExtra = ''
-      # Бинд клавиш
-      bindkey '^H' backward-kill-word
+        # Direnv
+        eval "$(direnv hook zsh)"
 
-      # Direnv
-      eval "$(direnv hook zsh)"
+        # Автодополнение для uvx (если пакет uv установлен)
+        if command -v uvx &> /dev/null; then
+          eval "$(uvx --generate-shell-completion zsh)"
+        fi
 
-      # Автодополнение для uvx (если пакет uv установлен)
-      if command -v uvx &> /dev/null; then
-        eval "$(uvx --generate-shell-completion zsh)"
-      fi
-
-      # Загрузка кастомных настроек p10k (если файл существует)
-      [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-    '';
+        # Загрузка кастомных настроек p10k (если файл существует)
+        [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+      ''
+    ];
   };
 
   # Прокачка CLI
