@@ -29,7 +29,6 @@
     gimp
     libreoffice
     zathura
-    hiddify-app
 
     # Panel (Noctalia)
     inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default

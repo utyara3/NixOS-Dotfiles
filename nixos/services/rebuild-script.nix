@@ -3,7 +3,8 @@
 
 pkgs.writeScriptBin "nr" ''
   #!/usr/bin/env bash
-  set -e
+  # Структруно падаем при любых ошибках, включая пайпы (pipefail)
+  set -eo pipefail
 
   CONFIG_DIR="/home/utyara3/nixos-config"
   ACTION=''${1:-switch}
@@ -14,7 +15,6 @@ pkgs.writeScriptBin "nr" ''
   echo "🧹 Форматируем измененные файлы..."
   nix fmt . &>/dev/null || true
 
-  # 🔥 ИСПРАВЛЕНО: Глушим вывод Git, чтобы он не засирал терминал метками и ссылками
   git add -A &>/dev/null
 
   if ! git diff --cached --quiet || ! git diff --quiet; then
@@ -22,10 +22,15 @@ pkgs.writeScriptBin "nr" ''
     git status --short
   fi
 
-  # Запуск nh без sudo — граф и статистика остаются, мусор уходит
   echo "🚀 Запуск nh os $ACTION..."
-  nh os "$ACTION" "$CONFIG_DIR" 2>&1 | grep -v -E '^[^> ]+>'
 
+  # Включаем локальный pipefail только для этой строки, чтобы grep не скрывал ошибку nh
+  if ! (set -o pipefail; nh os "$ACTION" "$CONFIG_DIR" 2>&1 | grep -v -E '^[^> ]+>'); then
+    echo "❌ Ошибка: Сборка NixOS завершилась неудачно! Коммит отменен."
+    exit 1
+  fi
+
+  # Сюда скрипт дойдет ТОЛЬКО если nh os завершился с кодом 0
   if [ "$ACTION" = "switch" ] || [ "$ACTION" = "boot" ]; then
     if ! git diff --cached --quiet || ! git diff --quiet; then
       echo "💾 Сборка успешна! Создаем автокоммит..."

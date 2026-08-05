@@ -28,6 +28,7 @@
     ./services/happ.nix
     ./services/power.nix
     ./services/tlp.nix
+    ./services/v2rayA.nix
   ];
 
   # Nix settings
