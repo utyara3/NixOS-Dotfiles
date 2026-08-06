@@ -38,7 +38,9 @@ widget_order = []
 pre_action_fade_seconds = 5
 
 [location]
-auto_locate = true
+auto_locate = false
+latitude = 63.5651
+longitude = 53.6874
 
 [lockscreen]
 blur_intensity = 0.39999999105930328
