@@ -22,7 +22,7 @@
   # Включаем Thunar на уровне системы
   programs.thunar = {
     enable = true;
-    plugins = with pkgs.xfce; [
+    plugins = with pkgs; [
       thunar-archive-plugin # Сжать/Распаковать в контекстном меню
       thunar-volman # Автоматическое управление флешками
     ];
