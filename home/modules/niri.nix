@@ -153,7 +153,7 @@ in
 
         "Mod+V".action.toggle-window-floating = [ ];
         "Mod+P".action.switch-preset-column-width = [ ];
-        # "Mod+Q".action.close-window = [ ];
+        "Mod+Q".action.close-window = [ ];
         "Mod+F".action.maximize-column = [ ];
         "Mod+Shift+F".action.expand-column-to-available-width = [ ];
         "Mod+Tab".action.toggle-overview = [ ];
