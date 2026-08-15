@@ -1,9 +1,6 @@
 # nixos/configutaion.nix
 
-{
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -29,6 +26,7 @@
     ./services/power.nix
     ./services/tlp.nix
     ./services/v2rayA.nix
+    ./services/homepage.nix
   ];
 
   # Nix settings
