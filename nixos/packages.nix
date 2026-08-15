@@ -10,6 +10,7 @@ in
     vim
     wget
     curl
+    zip
     unzip
     imv
     mpv
