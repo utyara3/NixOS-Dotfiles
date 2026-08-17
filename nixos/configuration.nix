@@ -44,6 +44,19 @@
 
     keep-outputs = true;
     keep-derivations = true;
+
+    substituters = [
+      "https://cache.nixos.org/"
+      "https://ayugram-desktop.cachix.org"
+      "https://tg-owt.cachix.org"
+    ];
+
+    trusted-public-keys = [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "ayugram-desktop.cachix.org:AZ5EqHrJsAKL5YkZYLPEsb1FdD9QlypUwQ0REcJftgA="
+      "tg-owt.cachix.org-1:R2SgOfY8B3fUu0fO+Y2fK3tXw/tW9fOOf1M0B0fQfXk8="
+    ];
+
   };
 
   xdg.portal = {

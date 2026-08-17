@@ -1,6 +1,6 @@
 # home/modules.niri
 
-{ ... }:
+{ pkgs, ... }:
 
 let
   terminal = "kitty";
@@ -11,6 +11,7 @@ in
 {
   programs.niri = {
     enable = true;
+    package = pkgs.niri;
 
     settings = {
       cursor = {
