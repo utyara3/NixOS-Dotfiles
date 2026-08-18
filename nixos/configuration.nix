@@ -28,7 +28,6 @@
     ./services/v2rayA.nix
   ];
 
-  # Nix settings
   nix.settings = {
     experimental-features = [
       "nix-command"
@@ -53,10 +52,9 @@
 
     trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "ayugram-desktop.cachix.org:AZ5EqHrJsAKL5YkZYLPEsb1FdD9QlypUwQ0REcJftgA="
-      "tg-owt.cachix.org-1:R2SgOfY8B3fUu0fO+Y2fK3tXw/tW9fOOf1M0B0fQfXk8="
+      "ayugram-desktop.cachix.org-1:AZ5EqHrJsAKL5YkZYLPEsb1FdD9QlypUwQ0REcJftgA="
+      "tg-owt.cachix.org-1:lp0BukIhSK3EIyLcDhDZ5zABgT48nmNp6t4SnZ0wr8w="
     ];
-
   };
 
   xdg.portal = {
