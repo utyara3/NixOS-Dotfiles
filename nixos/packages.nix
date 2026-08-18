@@ -27,6 +27,7 @@ in
     uv
     powertop
     translate-shell
+    ffmpeg
 
     # Wayland essentials
     wl-clipboard
