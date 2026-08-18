@@ -26,6 +26,7 @@
     ./services/power.nix
     ./services/tlp.nix
     ./services/v2rayA.nix
+    ./services/flatpak.nix
   ];
 
   nix.settings = {
