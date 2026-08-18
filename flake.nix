@@ -1,3 +1,5 @@
+# flake.nix
+
 {
   description = "utyara3's NixOS Configuration";
 
@@ -38,6 +40,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-flatpak = {
+      url = "github:gmodena/nix-flatpak/?ref=v0.7.0";
+    };
   };
 
   outputs =
