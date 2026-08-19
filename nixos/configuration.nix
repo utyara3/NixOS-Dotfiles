@@ -77,6 +77,7 @@
     enable = true;
     extraPackages = with pkgs; [
       intel-media-driver
+      intel-vaapi-driver
     ];
   };
 
@@ -100,6 +101,7 @@
   programs = {
     steam.enable = true;
     gamescope.enable = true;
+    gamemode.enable = true;
     nh = {
       enable = true;
       flake = "/home/utyara3/nixos-config";
