@@ -1,6 +1,6 @@
 # nixos/services/virtualization.nix
 
-{ config, pkgs, ... }:
+{ ... }:
 
 {
   virtualisation.docker.enable = true;
