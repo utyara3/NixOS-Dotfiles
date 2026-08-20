@@ -45,7 +45,7 @@
     };
 
     voxtype = {
-      url = "github:peteonrails/voxtype";
+      url = "github:peteonrails/voxtype/v0.7.5";
     };
   };
 

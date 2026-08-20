@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports = [
@@ -8,10 +8,13 @@
   programs.voxtype = {
     enable = true;
 
-    package = inputs.voxtype.packages.${pkgs.system}.default;
+    # Whisper + Vulkan
+    package = inputs.voxtype.packages.${pkgs.system}.vulkan;
 
+    # Мультиязычная модель
     model.name = "small";
 
+    # Запускаем daemon через systemd --user
     service.enable = true;
 
     settings = {
@@ -27,18 +30,6 @@
         mode = "type";
         fallback_to_clipboard = true;
         type_delay_ms = 0;
-      };
-
-      audio = {
-        device = "default";
-        sample_rate = 16000;
-        max_duration_secs = 60;
-      };
-
-      audio.feedback = {
-        enabled = true;
-        theme = "subtle";
-        volume = 0.5;
       };
 
       output.notification = {
