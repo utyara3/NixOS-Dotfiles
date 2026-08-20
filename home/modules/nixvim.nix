@@ -245,6 +245,8 @@
               "ruff_fix"
             ];
             nix = [ "nixpkgs-fmt" ];
+            gp = [ "gofumpt" ];
+
           };
         };
       };
@@ -278,6 +280,22 @@
           };
 
           ruff.enable = true;
+
+          # golang
+          gopls = {
+            enable = true;
+            settings = {
+              gopls = {
+                gofumpt = true;
+                staticcheck = true;
+                analyses = {
+                  unusedparams = true;
+                  shadow = true;
+                };
+              };
+            };
+          };
+
         };
       };
     };

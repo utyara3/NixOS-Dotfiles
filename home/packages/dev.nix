@@ -22,5 +22,11 @@
 
     # Uv
     uv
+
+    # golang
+    go
+    gopls
+    gofumpt
+    golangci-lint
   ];
 }
