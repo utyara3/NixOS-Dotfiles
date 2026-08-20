@@ -7,13 +7,18 @@
 
   programs.voxtype = {
     enable = true;
-    package = inputs.voxtype.packages.${pkgs.system}.vulkan;
+    package = inputs.voxtype.packages.${pkgs.stdenv.hostPlatform.system}.vulkan;
 
     model.name = "base";
     service.enable = true;
 
     settings = {
       hotkey.enabled = false;
+
+      osd = {
+        fronted = "gtk4";
+        enable = true;
+      };
 
       whisper = {
         language = "ru";
