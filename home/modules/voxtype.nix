@@ -21,7 +21,10 @@
       hotkey.enabled = false;
 
       whisper = {
-        language = "auto";
+        language = [
+          "ru"
+          "en"
+        ];
         translate = false;
         on_demand_loading = true;
       };
