@@ -9,7 +9,7 @@
     enable = true;
     package = inputs.voxtype.packages.${pkgs.stdenv.hostPlatform.system}.vulkan;
 
-    model.name = "base";
+    model.name = "small";
     service.enable = true;
 
     settings = {
