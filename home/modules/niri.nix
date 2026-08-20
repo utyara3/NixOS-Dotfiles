@@ -97,6 +97,11 @@ in
         "Mod+Shift+Slash".action.show-hotkey-overlay = [ ];
 
         "Mod+A".action.spawn = [ "AyuGram" ];
+        "F12".action.spawn = [
+          "voxtype"
+          "record"
+          "toggle"
+        ];
 
         "Mod+T".action.spawn = [ "${terminal}" ];
         "Mod+H".action.spawn = [
