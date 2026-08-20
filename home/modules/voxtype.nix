@@ -7,38 +7,24 @@
 
   programs.voxtype = {
     enable = true;
-
-    # Whisper + Vulkan
     package = inputs.voxtype.packages.${pkgs.system}.vulkan;
 
-    # Мультиязычная модель
-    model.name = "small";
-
-    # Запускаем daemon через systemd --user
+    model.name = "base";
     service.enable = true;
 
     settings = {
       hotkey.enabled = false;
 
       whisper = {
-        language = [
-          "ru"
-          "en"
-        ];
+        language = "ru";
         translate = false;
-        on_demand_loading = true;
+        on_demand_loading = false;
       };
 
       output = {
         mode = "type";
         fallback_to_clipboard = true;
         type_delay_ms = 0;
-      };
-
-      output.notification = {
-        on_recording_start = false;
-        on_recording_stop = false;
-        on_transcription = true;
       };
     };
   };

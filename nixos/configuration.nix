@@ -78,6 +78,8 @@
     extraPackages = with pkgs; [
       intel-media-driver
       intel-vaapi-driver
+      vulkan-loader
+      intel-compute-runtime
     ];
   };
 
