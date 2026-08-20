@@ -22,8 +22,11 @@ warning_threshold = 20
 sidebar = "full"
 sidebar_section = "full"
 
+    [control_center.calendar]
+    show_events_card = false
+
 [desktop_widgets]
-enabled = false
+enabled = true
 schema_version = 2
 widget_order = []
 
@@ -38,9 +41,10 @@ widget_order = []
 pre_action_fade_seconds = 5
 
 [location]
+address = "Russia, Ukhta"
 auto_locate = false
-latitude = 63.5651
-longitude = 53.6874
+latitude = 63.565100000000001
+longitude = 53.687399999999997
 
 [lockscreen]
 blur_intensity = 0.39999999105930328
@@ -54,7 +58,8 @@ widget_order = [
     "lockscreen-widget-0000000000000001",
     "lockscreen-widget-0000000000000002",
     "lockscreen-widget-0000000000000003",
-    "lockscreen-widget-0000000000000004"
+    "lockscreen-widget-0000000000000004",
+    "lockscreen-widget-0000000000000005"
 ]
 
     [lockscreen_widgets.grid]
@@ -63,11 +68,13 @@ widget_order = [
     visible = true
 
     [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
-    box_height = 70.0
-    box_width = 400.0
-    cx = 960.0
-    cy = 712.0
+    box_height = 196.0
+    box_width = 720.0
+    cx = 1480.0
+    cy = 786.0
     output = "eDP-1"
+    placement_height = 1200.0
+    placement_width = 1920.0
     rotation = 0.0
     type = "login_box"
 
@@ -75,19 +82,26 @@ widget_order = [
         background_color = "surface_variant"
         background_opacity = 0.88
         background_radius = 12.0
+        center_password_text = false
         input_opacity = 1.0
         input_radius = 6.0
+        layout = "regular"
         show_caps_lock = true
         show_keyboard_layout = true
         show_login_button = true
-        show_password_hint = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
 
     [lockscreen_widgets.widget.lockscreen-widget-0000000000000001]
     box_height = 240.0
     box_width = 464.0
-    cx = 960.0
-    cy = 232.0
+    cx = 392.0
+    cy = 136.0
     output = "eDP-1"
+    placement_height = 1200.0
+    placement_width = 1920.0
     rotation = 0.0
     type = "clock"
 
@@ -98,11 +112,13 @@ widget_order = [
         format = "{:%H:%M:%S}"
 
     [lockscreen_widgets.widget.lockscreen-widget-0000000000000002]
-    box_height = 400.0
-    box_width = 512.0
-    cx = 336.0
-    cy = 640.0
+    box_height = 288.0
+    box_width = 400.0
+    cx = 216.0
+    cy = 888.0
     output = "eDP-1"
+    placement_height = 1200.0
+    placement_width = 1920.0
     rotation = 0.0
     type = "sysmon"
 
@@ -113,9 +129,11 @@ widget_order = [
     [lockscreen_widgets.widget.lockscreen-widget-0000000000000003]
     box_height = 80.0
     box_width = 224.0
-    cx = 960.0
-    cy = 600.0
+    cx = 1480.0
+    cy = 544.0
     output = "eDP-1"
+    placement_height = 1200.0
+    placement_width = 1920.0
     rotation = 0.0
     type = "label"
 
@@ -125,16 +143,29 @@ widget_order = [
         title = "utyara3"
 
     [lockscreen_widgets.widget.lockscreen-widget-0000000000000004]
-    box_height = 368.0
-    box_width = 496.0
-    cx = 1584.0
-    cy = 640.0
+    box_height = 336.0
+    box_width = 416.0
+    cx = 720.0
+    cy = 1000.0
     output = "eDP-1"
+    placement_height = 1200.0
+    placement_width = 1920.0
     rotation = 0.0
     type = "weather"
 
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000005]
+    box_height = 464.0
+    box_width = 704.0
+    cx = 416.0
+    cy = 456.0
+    output = "eDP-1"
+    placement_height = 1200.0
+    placement_width = 1920.0
+    rotation = 0.0
+    type = "calendar"
+
 [plugins]
-enabled = [ "noctalia/bongocat" ]
+enabled = []
 
 [shell]
 app_icon_color = "on_surface"
@@ -155,26 +186,26 @@ time_format = "{:%H:%M:%S}"
 
 [theme]
 builtin = "Gruvbox"
-community_palette = "Oxocarbon"
+community_palette = "ADW"
 mode = "dark"
 source = "wallpaper"
-wallpaper_scheme = "m3-content"
+wallpaper_scheme = "faithful"
 
     [theme.templates]
     builtin_ids = [ "btop", "cava", "gtk3", "gtk4", "kitty", "niri", "qt" ]
-    community_ids = [ "zen-browser", "neovim", "obsidian", "vscode", "discord", "steam", "telegram" ]
+    community_ids = [ "zen-browser", "neovim", "obsidian", "vscode", "discord", "obs", "steam", "telegram", "yazi" ]
 
 [wallpaper]
 directory = "/home/utyara3/Pictures/Images/Wallpapers"
 
     [wallpaper.default]
-    path = "/home/utyara3/Pictures/Images/Wallpapers/skulls.png"
+    path = "/home/utyara3/Pictures/Images/Wallpapers/red_guy.png"
 
     [wallpaper.last]
-    path = "/home/utyara3/Pictures/Images/Wallpapers/skulls.png"
+    path = "/home/utyara3/Pictures/Images/Wallpapers/red_guy.png"
 
     [wallpaper.monitors.eDP-1]
-    path = "/home/utyara3/Pictures/Images/Wallpapers/skulls.png"
+    path = "/home/utyara3/Pictures/Images/Wallpapers/red_guy.png"
 
 [widget.battery]
 enabled = true
