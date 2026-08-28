@@ -113,6 +113,8 @@
       libraries = with pkgs; [
         stdenv.cc.cc
         zlib
+        openssl
+        curl
       ];
     };
   };
