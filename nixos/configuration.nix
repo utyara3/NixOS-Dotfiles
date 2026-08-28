@@ -108,6 +108,13 @@
       enable = true;
       flake = "/home/utyara3/nixos-config";
     };
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        stdenv.cc.cc
+        zlib
+      ];
+    };
   };
 
   services.gnome.gnome-keyring.enable = true;
