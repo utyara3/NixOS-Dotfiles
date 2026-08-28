@@ -1,8 +1,5 @@
 # home/modules/nixvim.nix
-{
-  inputs,
-  ...
-}:
+{ inputs, pkgs, ... }:
 
 {
   programs.nixvim = {
@@ -196,6 +193,7 @@
       supermaven = {
         enable = true;
         settings = {
+          binary_path = "${pkgs.vimPlugins.supermaven-nvim}/bin/sm-agent";
           keymaps = {
             accept_suggestion = "<Tab>";
             clear_suggestion = "<C-]>";
