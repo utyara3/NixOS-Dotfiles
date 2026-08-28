@@ -115,6 +115,8 @@
         zlib
         openssl
         curl
+        libssh2
+        glibc
       ];
     };
   };
