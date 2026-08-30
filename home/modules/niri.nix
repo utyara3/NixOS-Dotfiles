@@ -171,8 +171,8 @@ in
         "Mod+Equal".action.set-column-width = "+5%";
 
         # Vim motions like
-        "Mod+L".action.focus-column-left = [ ];
-        "Mod+H".action.focus-column-right = [ ];
+        "Mod+H".action.focus-column-left = [ ];
+        "Mod+L".action.focus-column-right = [ ];
         "Mod+K".action.focus-window-or-workspace-up = [ ];
         "Mod+J".action.focus-window-or-workspace-down = [ ];
 
