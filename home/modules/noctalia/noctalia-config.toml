@@ -41,7 +41,7 @@ widget_order = []
 pre_action_fade_seconds = 5
 
 [location]
-address = "Russia, Ukhta"
+address = "Russia, Yaroslavl"
 auto_locate = false
 latitude = 63.565100000000001
 longitude = 53.687399999999997

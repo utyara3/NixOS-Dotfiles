@@ -144,24 +144,6 @@
       settings.flavour = "mocha";
     };
 
-    extraPlugins = with pkgs.vimPlugins; [
-      supermaven-nvim
-    ];
-
-    # 2. Сюда пишем чистый Lua-код для его запуска
-    extraConfigLua = ''
-      require("supermaven-nvim").setup({
-        keymaps = {
-          accept_suggestion = "<Tab>",
-          clear_suggestion = "<C-]>",
-          accept_word = "<C-j>",
-        },
-        ignore_filetypes = {
-          log = true;
-        },
-      })
-    '';
-
     plugins = {
       lualine.enable = true;
       bufferline.enable = true;
@@ -205,20 +187,19 @@
         settings.anti_conceal.enabled = true;
       };
 
-      #      supermaven = {
-      #        enable = true;
-      #        settings = {
-      #          binary_path = "${pkgs.supermaven-bin}/bin/sm-agent";
-      #          keymaps = {
-      #            accept_suggestion = "<Tab>";
-      #            clear_suggestion = "<C-]>";
-      #            accept_word = "<C-j>";
-      #          };
-      #          ignore_filetypes = {
-      #            log = true;
-      #          };
-      #        };
-      #      };
+      supermaven = {
+        enable = true;
+        settings = {
+          keymaps = {
+            accept_suggestion = "<Tab>";
+            clear_suggestion = "<C-]>";
+            accept_word = "<C-j>";
+          };
+          ignore_filetypes = {
+            log = true;
+          };
+        };
+      };
 
       cmp = {
         enable = true;
