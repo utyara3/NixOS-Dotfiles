@@ -104,11 +104,13 @@ in
         ];
 
         "Mod+T".action.spawn = [ "${terminal}" ];
-        "Mod+H".action.spawn = [
-          "sh"
-          "-c"
-          "${vpnApp}"
-        ];
+
+        #"Mod+H".action.spawn = [
+        #  "sh"
+        #  "-c"
+        #  "${vpnApp}"
+        #];
+
         "Mod+E".action.spawn = [
           "sh"
           "-c"
@@ -129,12 +131,13 @@ in
           "clipboard"
         ];
 
-        "Mod+L".action.spawn = [
+        "Mod+Escape".action.spawn = [
           "noctalia"
           "msg"
           "session"
           "lock"
         ];
+
         "Mod+M".action.spawn = [
           "noctalia"
           "msg"
@@ -167,15 +170,16 @@ in
         "Mod+Minus".action.set-column-width = "-5%";
         "Mod+Equal".action.set-column-width = "+5%";
 
-        "Mod+Left".action.focus-column-left = [ ];
-        "Mod+Right".action.focus-column-right = [ ];
-        "Mod+Up".action.focus-window-or-workspace-up = [ ];
-        "Mod+Down".action.focus-window-or-workspace-down = [ ];
+        # Vim motions like
+        "Mod+L".action.focus-column-left = [ ];
+        "Mod+H".action.focus-column-right = [ ];
+        "Mod+K".action.focus-window-or-workspace-up = [ ];
+        "Mod+J".action.focus-window-or-workspace-down = [ ];
 
-        "Mod+Shift+Left".action.move-column-left = [ ];
-        "Mod+Shift+Right".action.move-column-right = [ ];
-        "Mod+Shift+Up".action.move-window-up = [ ];
-        "Mod+Shift+Down".action.move-window-down = [ ];
+        "Mod+Shift+L".action.move-column-left = [ ];
+        "Mod+Shift+H".action.move-column-right = [ ];
+        "Mod+Shift+K".action.move-window-up = [ ];
+        "Mod+Shift+J".action.move-window-down = [ ];
 
         "Mod+1".action.focus-workspace = 1;
         "Mod+2".action.focus-workspace = 2;
