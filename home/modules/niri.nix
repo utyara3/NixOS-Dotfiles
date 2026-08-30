@@ -99,14 +99,17 @@ in
         # Warpd
         "Mod+Shift+Y".action.spawn = [
           "warpd"
+          "-f"
           "--hint"
         ];
         "Mod+Shift+U".action.spawn = [
           "warpd"
+          "-f"
           "--grid"
         ];
         "Mod+Shift+I".action.spawn = [
           "warpd"
+          "-f"
           "--normal"
         ];
 
