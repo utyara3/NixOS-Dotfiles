@@ -27,7 +27,7 @@ in
       input = {
         keyboard.xkb = {
           layout = "us,ru";
-          options = "grp:caps_toggle,grp_led:caps";
+          options = "grp:caps_toggle";
         };
 
         # Смещение мыши в центр при фокусе окна
@@ -40,6 +40,12 @@ in
         focus-follows-mouse = {
           enable = true;
           max-scroll-amount = "1%";
+        };
+
+        # Выключать тачпад во время набора текста
+        touchpad = {
+          tap = true;
+          dwt = true; # disable while typing
         };
       };
 
