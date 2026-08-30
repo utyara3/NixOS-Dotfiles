@@ -30,7 +30,11 @@
     libreoffice
     zathura
 
+    # Gnome archive
     file-roller
+
+    # Mouseless utility
+    warpd
 
     # Panel (Noctalia)
     inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default

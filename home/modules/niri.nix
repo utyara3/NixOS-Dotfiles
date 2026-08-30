@@ -96,6 +96,20 @@ in
 
         "Mod+Shift+Slash".action.show-hotkey-overlay = [ ];
 
+        # Warpd
+        "Mod+Shift+Y".action.spawn = [
+          "warpd"
+          "--hint"
+        ];
+        "Mod+Shift+U".action.spawn = [
+          "warpd"
+          "--grid"
+        ];
+        "Mod+Shift+I".action.spawn = [
+          "warpd"
+          "--normal"
+        ];
+
         "Mod+A".action.spawn = [ "AyuGram" ];
         "F12".action.spawn = [
           "voxtype"
@@ -153,7 +167,7 @@ in
           "control-center"
           "notifications"
         ];
-        "Mod+W".action.spawn = [
+        "Mod+Shift+W".action.spawn = [
           "noctalia"
           "msg"
           "panel-toggle"

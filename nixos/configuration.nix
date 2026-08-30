@@ -63,24 +63,28 @@
     extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
   };
 
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = false;
-    settings = {
-      Policy = {
-        AutoEnable = false;
+  hardware = {
+    bluetooth = {
+      enable = true;
+      powerOnBoot = false;
+      settings = {
+        Policy = {
+          AutoEnable = false;
+        };
       };
     };
-  };
 
-  hardware.graphics = {
-    enable = true;
-    extraPackages = with pkgs; [
-      intel-media-driver
-      intel-vaapi-driver
-      vulkan-loader
-      intel-compute-runtime
-    ];
+    graphics = {
+      enable = true;
+      extraPackages = with pkgs; [
+        intel-media-driver
+        intel-vaapi-driver
+        vulkan-loader
+        intel-compute-runtime
+      ];
+    };
+
+    uinput.enable = true;
   };
 
   nix.gc = {
