@@ -27,7 +27,7 @@ in
       input = {
         keyboard.xkb = {
           layout = "us,ru";
-          options = "grp:alt_shift_toggle";
+          options = "grp:caps_toggle,grp_led:caps";
         };
 
         # Смещение мыши в центр при фокусе окна
@@ -95,6 +95,8 @@ in
       binds = {
 
         "Mod+Shift+Slash".action.show-hotkey-overlay = [ ];
+
+        "Caps_Lock".action.switch-layout = [ "next" ];
 
         # Warpd
         "Mod+Shift+Y".action.spawn = [
