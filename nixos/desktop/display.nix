@@ -13,8 +13,10 @@
   };
 
   # Раскладки и tab переключение
-  services.xserver.xkb.layout = "us,ru";
-  services.xserver.xkb.options = "grp:tab_toggle";
+  services.xserver.xkb = {
+    layout = "us,ru";
+    options = "grp:caps_toggle";
+  };
 
   # Применяем в tty
   console.useXkbConfig = true;
