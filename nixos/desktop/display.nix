@@ -12,9 +12,12 @@
     enable = true;
   };
 
-  # Раскладки и Shift+Alt переключение
+  # Раскладки и tab переключение
   services.xserver.xkb.layout = "us,ru";
-  services.xserver.xkb.options = "grp:alt_shift_toggle";
+  services.xserver.xkb.options = "grp:tab_toggle";
+
+  # Применяем в tty
+  console.useXkbConfig = true;
 
   # GNOME (если понадобится - раскомментировать)
   # services.desktopManager.gnome.enable = true;
