@@ -1,6 +1,6 @@
 # nixos/desktop/fonts.nix
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   fonts.packages = with pkgs; [

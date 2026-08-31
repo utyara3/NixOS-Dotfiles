@@ -1,4 +1,5 @@
 # nixos/services/rebuild-script.nix
+
 { pkgs }:
 
 pkgs.writeScriptBin "nr" ''

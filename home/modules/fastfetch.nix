@@ -1,3 +1,5 @@
+# home/modules/fastfetch.nix
+
 { ... }:
 
 {

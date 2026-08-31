@@ -1,3 +1,5 @@
+# home/modules/opencode.nix
+
 { pkgs, ... }:
 
 {

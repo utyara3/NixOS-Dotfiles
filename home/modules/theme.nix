@@ -1,3 +1,5 @@
+# home/modules/theme.nix
+
 { pkgs, ... }:
 
 {

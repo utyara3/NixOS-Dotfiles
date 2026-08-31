@@ -1,3 +1,5 @@
+# home/modules/voxtype.nix
+
 { inputs, pkgs, ... }:
 
 {

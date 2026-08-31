@@ -1,3 +1,5 @@
+# home/modules/xdg.nix
+
 { config, pkgs, ... }:
 
 {

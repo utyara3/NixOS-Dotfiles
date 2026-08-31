@@ -1,6 +1,6 @@
 # nixos/desktop/audio.nix
 
-{ config, pkgs, ... }:
+{ ... }:
 
 {
   services.pipewire = {

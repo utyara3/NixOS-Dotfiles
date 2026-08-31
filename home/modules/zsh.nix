@@ -1,9 +1,6 @@
 # home/modules/zsh.nix
-{
-  pkgs,
-  lib,
-  ...
-}:
+
+{ pkgs, lib, ... }:
 
 {
   programs.zsh = {

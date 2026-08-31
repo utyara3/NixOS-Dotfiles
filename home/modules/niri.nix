@@ -4,7 +4,7 @@
 
 let
   terminal = "kitty";
-  vpnApp = "happ";
+  # vpnApp = "happ";
   fileManager = "kitty -e yazi";
   browser = "zen";
 in
@@ -20,6 +20,7 @@ in
         hide-on-key-press = true;
       };
 
+      # Пропускать показывание клавиш на запуске
       hotkey-overlay = {
         skip-at-startup = true;
       };
@@ -89,12 +90,14 @@ in
         }
         {
           matches = [ { app-id = "kitty"; } ];
+          # Не рисовать фон
           draw-border-with-background = false;
         }
       ];
 
       spawn-at-startup = [
         { command = [ "noctalia" ]; }
+        # Для поддержки иксовых приложений типа Happ и прочего
         { command = [ "xwayland-satellite" ]; }
       ];
 

@@ -12,7 +12,7 @@
     enable = true;
   };
 
-  # Раскладки и tab переключение
+  # Раскладки и caps переключение
   services.xserver.xkb = {
     layout = "us,ru";
     options = "grp:caps_toggle";

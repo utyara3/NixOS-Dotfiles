@@ -1,4 +1,6 @@
-{ config, pkgs, ... }:
+# home/modules/qalc.nix
+
+{ ... }:
 
 {
   programs.qalculate = {

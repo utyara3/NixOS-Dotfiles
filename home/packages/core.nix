@@ -1,10 +1,6 @@
 # home/packages/core.nix
 
-{
-  pkgs,
-  inputs,
-  ...
-}:
+{ pkgs, inputs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -14,7 +10,6 @@
     cliphist
     eza
     tty-clock
-    cbonsai
     cmatrix
     pipes-rs
 

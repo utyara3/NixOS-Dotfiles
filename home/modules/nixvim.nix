@@ -1,5 +1,5 @@
 # home/modules/nixvim.nix
-{ inputs, pkgs, ... }:
+{ inputs, ... }:
 
 {
   programs.nixvim = {
