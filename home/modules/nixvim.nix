@@ -137,6 +137,22 @@
         action = "<cmd>LazyGit<cr>";
         options.desc = "Toggle LazyGit";
       }
+
+      # --- Спортивное программирование (C++) ---
+      {
+        mode = "n";
+        key = "<F5>";
+        # Компилирует текущий файл и запускает в терминале справа
+        action = ":w<CR>:vsplit | terminal g++ -O2 -std=c++20 % -o %:r && ./%:r<CR>i";
+        options.desc = "CP: Compile & Run";
+      }
+      {
+        mode = "n";
+        key = "<F6>";
+        # Просто быстрая проверка компиляции без запуска
+        action = ":w<CR>:!g++ -O2 -std=c++20 % -o %:r<CR>";
+        options.desc = "CP: Quick Compile Check";
+      }
     ];
 
     colorschemes.catppuccin = {
@@ -179,7 +195,15 @@
       treesitter = {
         enable = true;
         nixGrammars = true;
-        settings.indent.enable = true;
+        settings = {
+          indent.enable = true;
+          # Добавим парсеры для C++ и сопутствующих
+          ensure_installed = [
+            "cpp"
+            "c"
+            "cmake"
+          ];
+        };
       };
 
       render-markdown = {
@@ -201,6 +225,11 @@
         };
       };
 
+      # Включаем плагины-источники для CMP (без них автодополнение пустое)
+      cmp-nvim-lsp.enable = true;
+      cmp-path.enable = true;
+      cmp-buffer.enable = true;
+
       cmp = {
         enable = true;
         autoEnableSources = true;
@@ -211,9 +240,11 @@
             { name = "buffer"; }
           ];
           mapping = {
-            "<CR>" = "cmp.mapping.confirm({ select = false})";
+            "<CR>" = "cmp.mapping.confirm({ select = false })";
             "<S-Tab>" = "cmp.mapping.select_next_item()";
             "<C-Tab>" = "cmp.mapping.select_prev_item()";
+            # Добавим принудительный вызов окна подсказок, если оно закрылось
+            "<C-Space>" = "cmp.mapping.complete()";
           };
         };
       };
@@ -240,7 +271,8 @@
             ];
             nix = [ "nixpkgs-fmt" ];
             gp = [ "gofumpt" ];
-
+            # Опционально: форматирование C++ кода при сохранении через clang-format
+            cpp = [ "clang-format" ];
           };
         };
       };
@@ -257,6 +289,9 @@
         };
 
         servers = {
+          # --- ВКЛЮЧАЕМ C++ СЕРВЕР ---
+          clangd.enable = true;
+
           nixd = {
             enable = true;
             settings = {
@@ -289,7 +324,6 @@
               };
             };
           };
-
         };
       };
     };
