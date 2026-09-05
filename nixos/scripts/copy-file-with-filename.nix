@@ -33,5 +33,5 @@ pkgs.writeScriptBin "copy" ''
   cat "$SOURCE_FILE"
 
   # Копируем в буфер обмена wl-copy сразу И имя, И содержимое
-  (echo "$FILE_NAME\n"; cat "$SOURCE_FILE") | wl-copy
+  (echo -e "$FULL_PATH\n"; cat "$SOURCE_FILE") | wl-copy
 ''
