@@ -1,7 +1,8 @@
 { pkgs, ... }:
 
 let
-  nr-rebuild = import ./services/rebuild-script.nix { inherit pkgs; };
+  nr-rebuild = import ./scripts/rebuild-script.nix { inherit pkgs; };
+  copy = import ./scripts/copy-file-with-filename.nix { inherit pkgs; };
 in
 {
   environment.systemPackages = with pkgs; [
@@ -34,5 +35,6 @@ in
     xwayland-satellite
 
     nr-rebuild
+    copy
   ];
 }

@@ -107,6 +107,9 @@ in
 
         "Caps_Lock".action.switch-layout = [ "next" ];
 
+        # Calc
+        "Mod+Shift+C".action.spawn = [ "qalculate-gtk" ];
+
         # Warpd
         "Mod+Shift+Y".action.spawn = [
           "warpd"

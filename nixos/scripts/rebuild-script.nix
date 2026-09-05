@@ -1,4 +1,4 @@
-# nixos/services/rebuild-script.nix
+# nixos/scripts/rebuild-script.nix
 
 { pkgs }:
 
