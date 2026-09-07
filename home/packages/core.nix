@@ -27,6 +27,7 @@
     gimp
     libreoffice
     zathura
+    kdePackages.okular
 
     # Gnome archive
     file-roller

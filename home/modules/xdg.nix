@@ -30,7 +30,8 @@
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      "application/pdf" = [ "org.pwmt.zathura-pdf-poppler.desktop" ];
+      "application/pdf" = [ "org.kde.okular.desktop" ];
+      "application/ebup+zip" = [ "org.kde.okular.desktop" ];
       "image/png" = [ "imv.desktop" ];
       "image/jpeg" = [ "imv.desktop" ];
       "video/mp4" = [ "mpv.desktop" ];
