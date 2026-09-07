@@ -114,6 +114,11 @@
       tunMode.enable = true;
     };
 
+    localsend = {
+      enable = true;
+      openFirewall = true;
+    };
+
     nh = {
       enable = true;
       flake = "/home/utyara3/nixos-config";
