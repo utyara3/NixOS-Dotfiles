@@ -108,10 +108,17 @@
     steam.enable = true;
     gamescope.enable = true;
     gamemode.enable = true;
+
+    throne = {
+      enable = true;
+      tunMode.enable = true;
+    };
+
     nh = {
       enable = true;
       flake = "/home/utyara3/nixos-config";
     };
+
     nix-ld = {
       enable = true;
       libraries = with pkgs; [

@@ -13,6 +13,9 @@
     cmatrix
     pipes-rs
 
+    # Throne VPN
+    throne
+
     # Calculator
     qalculate-gtk
 
