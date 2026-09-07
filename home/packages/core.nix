@@ -28,6 +28,7 @@
     libreoffice
     zathura
     kdePackages.okular
+    localsend
 
     # Gnome archive
     file-roller
