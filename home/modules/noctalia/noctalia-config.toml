@@ -186,7 +186,7 @@ time_format = "{:%H:%M:%S}"
 
     [shell.panel]
     # ВКЛЮЧАЕМ НАПЫЛЕННОЕ МЯГКОЕ РАЗМЫТИЕ вместо glass
-    transparency_mode = "blur"
+    transparency_mode = "transparent_blur"
 
     [shell.screenshot]
     directory = "/home/utyara3/Pictures/Screenshots"

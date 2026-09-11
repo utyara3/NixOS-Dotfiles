@@ -49,7 +49,7 @@
   # Заставляем QT-приложения выглядеть так же, как GTK (использовать системную тему)
   qt = {
     enable = true;
-    platformTheme.name = "gtk";
+    platformTheme.name = "gtk3";
     style.name = "adwaita-dark";
   };
 }
