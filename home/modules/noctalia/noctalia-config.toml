@@ -1,16 +1,21 @@
+# home/modules/noctalia/noctalia-config.toml
+
 [audio]
 enable_overdrive = true
 
 [bar.default]
-background_opacity = 0.84999998100101948
+# Чуть-чуть уменьшаем плотность фона для более мягкого размытия
+background_opacity = 0.65
 border = "primary"
 center = [ "date", "clock", "caffeine" ]
 end = [ "ram", "tray", "network", "bluetooth", "notifications", "volume", "brightness", "battery", "session" ]
-margin_edge = 3
-margin_ends = 200
+
+# Отодвигаем панель от края экрана, делая её парящим "островком" (как в iOS/macOS)
+margin_edge = 12
+margin_ends = 180
 panel_overlap = 0
 start = [ "launcher", "wallpaper", "workspaces", "media", "audio_visualizer" ]
-widget_spacing = 12
+widget_spacing = 14 # Немного больше воздуха между виджетами
 
 [battery]
 warning_threshold = 20
@@ -43,11 +48,12 @@ pre_action_fade_seconds = 5
 [location]
 address = "Russia, Yaroslavl"
 auto_locate = false
-latitude = 63.565100000000001
-longitude = 53.687399999999997
+latitude = 63.5651
+longitude = 53.6874
 
 [lockscreen]
-blur_intensity = 0.39999999105930328
+# Увеличиваем интенсивность размытия экрана блокировки для максимальной мягкости заднего плана
+blur_intensity = 0.65
 blurred_desktop = true
 
 [lockscreen_widgets]
@@ -80,11 +86,11 @@ widget_order = [
 
         [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
         background_color = "surface_variant"
-        background_opacity = 0.88
-        background_radius = 12.0
+        background_opacity = 0.75 # Делаем форму логина нежнее
+        background_radius = 18.0   # Закругляем под стиль Niri (18px)
         center_password_text = false
         input_opacity = 1.0
-        input_radius = 6.0
+        input_radius = 8.0
         layout = "regular"
         show_caps_lock = true
         show_keyboard_layout = true
@@ -179,13 +185,15 @@ time_format = "{:%H:%M:%S}"
     categories = false
 
     [shell.panel]
-    transparency_mode = "glass"
+    # ВКЛЮЧАЕМ НАПЫЛЕННОЕ МЯГКОЕ РАЗМЫТИЕ вместо glass
+    transparency_mode = "blur"
 
     [shell.screenshot]
     directory = "/home/utyara3/Pictures/Screenshots"
 
 [theme]
-builtin = "Gruvbox"
+# Меняем контрастный Gruvbox на эталон пастельной эстетики Catppuccin
+builtin = "Catppuccin"
 community_palette = "ADW"
 mode = "dark"
 source = "wallpaper"
@@ -215,3 +223,4 @@ type = "noctalia/bongocat:cat"
 
 [widget.network]
 show_label = false
+

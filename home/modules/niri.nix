@@ -1,4 +1,4 @@
-# home/modules.niri
+# home/modules/niri.nix
 
 { pkgs, ... }:
 
@@ -20,7 +20,6 @@ in
         hide-on-key-press = true;
       };
 
-      # Пропускать показывание клавиш на запуске
       hotkey-overlay = {
         skip-at-startup = true;
       };
@@ -31,86 +30,130 @@ in
           options = "grp:caps_toggle";
         };
 
-        # Смещение мыши в центр при фокусе окна
         warp-mouse-to-focus = {
           enable = true;
           mode = "center-xy-always";
         };
 
-        # Автофокус окна при наведении мышкой
         focus-follows-mouse = {
           enable = true;
           max-scroll-amount = "1%";
         };
 
-        # Выключать тачпад во время набора текста
         touchpad = {
           tap = true;
-          dwt = true; # disable while typing
+          dwt = true;
+        };
+      };
+
+      # --- ИСПРАВЛЕННЫЙ БЛОК АНИМАЦИЙ БЕЗ ВАРНИНГОВ ---
+      animations = {
+        # Слегка замедляем анимации, делая их вальяжными и киношными
+        slowdown = 1.35;
+
+        # Настраиваем идеальные затухающие пружины через свойство "kind"
+        horizontal-view-movement = {
+          kind = {
+            spring = {
+              damping-ratio = 0.95;
+              stiffness = 600;
+              epsilon = 0.0001;
+            };
+          };
+        };
+        window-open = {
+          kind = {
+            spring = {
+              damping-ratio = 0.95;
+              stiffness = 700;
+              epsilon = 0.0001;
+            };
+          };
+        };
+        window-close = {
+          kind = {
+            spring = {
+              damping-ratio = 0.95;
+              stiffness = 700;
+              epsilon = 0.0001;
+            };
+          };
+        };
+        window-resize = {
+          kind = {
+            spring = {
+              damping-ratio = 0.90;
+              stiffness = 700;
+              epsilon = 0.0001;
+            };
+          };
+        };
+        workspace-switch = {
+          kind = {
+            spring = {
+              damping-ratio = 0.95;
+              stiffness = 600;
+              epsilon = 0.0001;
+            };
+          };
         };
       };
 
       layout = {
-        gaps = 12;
+        # Увеличиваем воздушные отступы между окнами для "няшности"
+        gaps = 18;
 
+        # Отключаем агрессивный фокус-ринг. Нам не нужны жесткие границы
         focus-ring = {
-          width = 2;
-
-          active.color = "#0099ff";
-          inactive.color = "#505050";
+          enable = false;
         };
 
+        # Делаем тени гигантскими, очень размытыми и прозрачными (эффект парения)
         shadow = {
           enable = true;
-          softness = 30;
-          spread = 4;
+          softness = 45;
+          spread = 2;
           offset = {
             x = 0;
-            y = 0;
-          };
+            y = 6;
+          }; # Смещение вниз дает ощущение объема
 
-          color = "#0099ff99";
-          inactive-color = "#00000055";
+          # Нежнейший полупрозрачный черный для активного и неактивного окна
+          color = "#00000030";
+          inactive-color = "#00000018";
 
           draw-behind-window = false;
         };
-
       };
 
       window-rules = [
         {
+          # Огромные круглые углы, как в iOS/macOS
           geometry-corner-radius = {
-            top-left = 12.0;
-            top-right = 12.0;
-            bottom-left = 12.0;
-            bottom-right = 12.0;
+            top-left = 18.0;
+            top-right = 18.0;
+            bottom-left = 18.0;
+            bottom-right = 18.0;
           };
 
           clip-to-geometry = true;
         }
         {
           matches = [ { app-id = "kitty"; } ];
-          # Не рисовать фон
           draw-border-with-background = false;
         }
       ];
 
       spawn-at-startup = [
         { command = [ "noctalia" ]; }
-        # Для поддержки иксовых приложений типа Happ и прочего
         { command = [ "xwayland-satellite" ]; }
       ];
 
       binds = {
-
         "Mod+Shift+Slash".action.show-hotkey-overlay = [ ];
-
         "Caps_Lock".action.switch-layout = [ "next" ];
-
-        # Calc
         "Mod+Shift+C".action.spawn = [ "qalculate-gtk" ];
 
-        # Warpd
         "Mod+Shift+Y".action.spawn = [
           "warpd"
           "-f"
@@ -133,14 +176,7 @@ in
           "record"
           "toggle"
         ];
-
         "Mod+T".action.spawn = [ "${terminal}" ];
-
-        #"Mod+H".action.spawn = [
-        #  "sh"
-        #  "-c"
-        #  "${vpnApp}"
-        #];
 
         "Mod+E".action.spawn = [
           "sh"
@@ -148,7 +184,6 @@ in
           "${fileManager}"
         ];
         "Mod+B".action.spawn = [ "${browser}" ];
-        # "Mod+R".action.spawn = [ "sh" "-c" "${menu}" ];
         "Mod+R".action.spawn = [
           "noctalia"
           "msg"
@@ -161,14 +196,12 @@ in
           "panel-toggle"
           "clipboard"
         ];
-
         "Mod+Escape".action.spawn = [
           "noctalia"
           "msg"
           "session"
           "lock"
         ];
-
         "Mod+M".action.spawn = [
           "noctalia"
           "msg"
@@ -201,7 +234,6 @@ in
         "Mod+Minus".action.set-column-width = "-5%";
         "Mod+Equal".action.set-column-width = "+5%";
 
-        # Vim motions like
         "Mod+H".action.focus-column-left = [ ];
         "Mod+L".action.focus-column-right = [ ];
         "Mod+K".action.focus-window-or-workspace-up = [ ];
