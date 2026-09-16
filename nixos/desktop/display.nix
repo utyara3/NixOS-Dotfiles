@@ -12,8 +12,6 @@
       layout = "us,ru";
       options = "grp:caps_toggle";
     };
-
-    desktopManager.gnome.enable = false;
   };
 
   # GDM (экран входа в систему)
