@@ -60,6 +60,8 @@
           specialArgs = { inherit inputs system; };
 
           modules = [
+            inputs.nix-flatpak.nixosModules.nix-flatpak
+
             ./nixos/configuration.nix
 
             "${inputs.happ-nixos}/happ-module.nix"
