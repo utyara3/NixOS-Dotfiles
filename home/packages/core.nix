@@ -13,9 +13,6 @@
     cmatrix
     pipes-rs
 
-    # Throne VPN
-    throne
-
     # Calculator
     qalculate-gtk
 
@@ -29,12 +26,10 @@
     zathura
     kdePackages.okular
     localsend
+    tor-browser
 
     # Gnome archive
     file-roller
-
-    # Mouseless utility
-    warpd
 
     # Panel (Noctalia)
     inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
