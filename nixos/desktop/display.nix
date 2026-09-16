@@ -5,17 +5,20 @@
 {
   # Нужно для того чтобы Happ (и прочие) запускались
   # Без ошибки wayland окружения
-  services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
+
+    xkb = {
+      layout = "us,ru";
+      options = "grp:caps_toggle";
+    };
+
+    desktopManager.gnome.enable = false;
+  };
 
   # GDM (экран входа в систему)
   services.displayManager.gdm = {
     enable = true;
-  };
-
-  # Раскладки и caps переключение
-  services.xserver.xkb = {
-    layout = "us,ru";
-    options = "grp:caps_toggle";
   };
 
   # Применяем в tty
