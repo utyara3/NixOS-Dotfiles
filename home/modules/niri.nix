@@ -133,6 +133,10 @@ in
           matches = [ { app-id = "kitty"; } ];
           draw-border-with-background = false;
         }
+        {
+          matches = [ { title = "^Picture-in-Picture$"; } ];
+          open-floating = true;
+        }
       ];
 
       spawn-at-startup = [
@@ -144,22 +148,6 @@ in
         "Mod+Shift+Slash".action.show-hotkey-overlay = [ ];
         "Caps_Lock".action.switch-layout = [ "next" ];
         "Mod+Shift+C".action.spawn = [ "qalculate-gtk" ];
-
-        "Mod+Shift+Y".action.spawn = [
-          "warpd"
-          "-f"
-          "--hint"
-        ];
-        "Mod+Shift+U".action.spawn = [
-          "warpd"
-          "-f"
-          "--grid"
-        ];
-        "Mod+Shift+I".action.spawn = [
-          "warpd"
-          "-f"
-          "--normal"
-        ];
 
         "Mod+A".action.spawn = [ "AyuGram" ];
         "F12".action.spawn = [
@@ -220,10 +208,14 @@ in
         "Mod+Q".action.close-window = [ ];
         "Mod+F".action.maximize-column = [ ];
         "Mod+Shift+F".action.expand-column-to-available-width = [ ];
+        "Mod+Ctrl+F".action.fullscreen-window = [ ];
         "Mod+Tab".action.toggle-overview = [ ];
 
         "Mod+Minus".action.set-column-width = "-5%";
         "Mod+Equal".action.set-column-width = "+5%";
+
+        "Mod+Ctrl+Minus".action.set-window-height = "-5%";
+        "Mod+Ctrl+Equal".action.set-window-height = "+5%";
 
         "Mod+H".action.focus-column-left = [ ];
         "Mod+L".action.focus-column-right = [ ];
@@ -234,6 +226,9 @@ in
         "Mod+Shift+L".action.move-column-right = [ ];
         "Mod+Shift+K".action.move-window-up = [ ];
         "Mod+Shift+J".action.move-window-down = [ ];
+
+        "Mod+Ctrl+H".action.consume-or-expel-window-left = [ ];
+        "Mod+Ctrl+L".action.consume-or-expel-window-right = [ ];
 
         "Mod+1".action.focus-workspace = 1;
         "Mod+2".action.focus-workspace = 2;
