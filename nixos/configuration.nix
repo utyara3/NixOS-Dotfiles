@@ -49,12 +49,14 @@
       "https://cache.nixos.org/"
       "https://ayugram-desktop.cachix.org"
       "https://tg-owt.cachix.org"
+      "https://noctalia.cachix.org"
     ];
 
     trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "ayugram-desktop.cachix.org-1:AZ5EqHrJsAKL5YkZYLPEsb1FdD9QlypUwQ0REcJftgA="
       "tg-owt.cachix.org-1:lp0BukIhSK3EIyLcDhDZ5zABgT48nmNp6t4SnZ0wr8w="
+      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
     ];
   };
 
@@ -108,6 +110,7 @@
     steam.enable = true;
     gamescope.enable = true;
     gamemode.enable = true;
+    noctalia.enable = true;
 
     throne = {
       enable = true;

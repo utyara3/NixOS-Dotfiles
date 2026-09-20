@@ -16,10 +16,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    noctalia = {
-      url = "github:noctalia-dev/noctalia/cachix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    noctalia.url = "github:noctalia-dev/noctalia/cachix";
 
     zen-browser = {
       url = "github:youwen5/zen-browser-flake";
@@ -63,6 +60,8 @@
             inputs.nix-flatpak.nixosModules.nix-flatpak
 
             ./nixos/configuration.nix
+
+            inputs.noctalia.nixosModules.default
 
             "${inputs.happ-nixos}/happ-module.nix"
 
