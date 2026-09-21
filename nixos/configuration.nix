@@ -113,11 +113,6 @@
     gamemode.enable = true;
     noctalia.enable = true;
 
-    throne = {
-      enable = true;
-      tunMode.enable = true;
-    };
-
     localsend = {
       enable = true;
       openFirewall = true;

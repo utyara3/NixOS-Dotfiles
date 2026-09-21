@@ -1,6 +1,6 @@
 # home/packages/core.nix
 
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -23,7 +23,6 @@
     obsidian
     gimp
     libreoffice
-    zathura
     kdePackages.okular
     localsend
     tor-browser

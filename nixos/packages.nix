@@ -25,7 +25,6 @@ in
     ripgrep
     direnv
     nix-direnv
-    uv
     powertop
     translate-shell
     ffmpeg
