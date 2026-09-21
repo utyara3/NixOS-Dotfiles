@@ -27,6 +27,7 @@
     ./services/tlp.nix
     ./services/v2rayA.nix
     ./services/flatpak.nix
+    ./services/postgresql.nix
   ];
 
   nix.settings = {
