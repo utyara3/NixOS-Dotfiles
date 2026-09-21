@@ -28,7 +28,7 @@
       cursor_stop_blinking_after = "0";
       shell_integration = "no-cursor";
       cursor_trail = "1";
-      cursor_trail_decay = "0.1 0.3";
+      cursor_trail_decay = "1 0.3";
       cursor_trail_start_threshold = "0";
       # cursor_trail_color #C742FF
       # cursor_trail_color #FE8019

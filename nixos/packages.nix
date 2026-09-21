@@ -29,6 +29,7 @@ in
     powertop
     translate-shell
     ffmpeg
+    postgresql_18
 
     # Wayland essentials
     wl-clipboard
