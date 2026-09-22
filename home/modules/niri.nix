@@ -320,25 +320,25 @@ in
           "previous"
         ];
 
-        # "Print".action.screenshot = [ ];
-        # "Shift+Print".action.screenshot-screen = [ ];
-        # "Ctrl+Print".action.screenshot-window = [ ];
+        "Print".action.screenshot = [ ];
+        "Shift+Print".action.screenshot-screen = [ ];
+        "Ctrl+Print".action.screenshot-window = [ ];
 
-        "Print".action.spawn = [
-          "noctalia"
-          "msg"
-          "screenshot-region"
-        ];
-        "Shift+Print".action.spawn = [
-          "noctalia"
-          "msg"
-          "screenshot-screen"
-        ];
-        "Ctrl+Print".action.spawn = [
-          "noctalia"
-          "msg"
-          "screenshot-window"
-        ];
+        # "Print".action.spawn = [
+        #   "noctalia"
+        #   "msg"
+        #   "screenshot-region"
+        # ];
+        # "Shift+Print".action.spawn = [
+        #   "noctalia"
+        #   "msg"
+        #   "screenshot-screen"
+        # ];
+        # "Ctrl+Print".action.spawn = [
+        #   "noctalia"
+        #   "msg"
+        #   "screenshot-window"
+        # ];
       };
 
       prefer-no-csd = true;
