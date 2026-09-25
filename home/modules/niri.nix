@@ -206,6 +206,7 @@ in
           "noctalia"
           "msg"
           "panel-toggle"
+          "control-center"
           "network"
         ];
         "Mod+I".action.spawn = [
