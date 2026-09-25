@@ -196,11 +196,23 @@ in
           "control-center"
           "notifications"
         ];
-        "Mod+Shift+W".action.spawn = [
+        "Mod+W".action.spawn = [
           "noctalia"
           "msg"
           "panel-toggle"
           "wallpaper"
+        ];
+        "Mod+Shift+W".action.spawn = [
+          "noctalia"
+          "msg"
+          "panel-toggle"
+          "network"
+        ];
+        "Mod+I".action.spawn = [
+          "noctalia"
+          "msg"
+          "panel-toggle"
+          "control-center"
         ];
 
         "Mod+V".action.toggle-window-floating = [ ];
