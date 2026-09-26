@@ -6,6 +6,7 @@ let
   terminal = "kitty";
   # vpnApp = "happ";
   fileManager = "kitty -e yazi";
+  fileManager2 = "thunar";
   browser = "zen";
 in
 {
@@ -161,6 +162,11 @@ in
           "sh"
           "-c"
           "${fileManager}"
+        ];
+        "Mod+Shift+E".action.spawn = [
+          "sh"
+          "-c"
+          "${fileManager2}"
         ];
         "Mod+B".action.spawn = [ "${browser}" ];
         "Mod+R".action.spawn = [
