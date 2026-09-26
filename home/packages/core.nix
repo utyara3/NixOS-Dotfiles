@@ -29,6 +29,7 @@
     kdePackages.okular
     localsend
     tor-browser
+    sonic-pi
 
     # Gnome archive
     file-roller
