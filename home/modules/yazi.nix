@@ -64,15 +64,19 @@
         prepend_keymap = [
           {
             on = [ "<Enter>" ];
+            run = "open";
+            desc = "Open the selected file";
+          }
+          {
+            on = [ "e" ];
             run = "plugin extract";
             desc = "Extract here";
           }
           {
-            on = [ "<S-Enter>" ];
+            on = [ "E" ];
             run = "plugin extract --args='--subdir'";
             desc = "Extract into a subdirectory named after archive";
           }
-          # ИСПРАВЛЕНО: Рабочий бинд на Ctrl + t
           {
             on = [ "<C-t>" ];
             run = "shell \"$SHELL\" --block";
