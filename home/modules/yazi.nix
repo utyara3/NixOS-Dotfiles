@@ -1,5 +1,3 @@
-# home/modules/yazi.nix
-
 { ... }:
 
 {
@@ -10,53 +8,50 @@
       opener = {
         pdf = [
           {
-            run = "zathura \"$@\"";
-            block = true;
-            desc = "Zathura";
+            run = ''okular "$@"'';
+            desc = "Okular";
           }
         ];
         image = [
           {
-            run = "imv \"$@\"";
-            detach = true;
+            run = ''imv "$@"'';
+            orphan = true;
             desc = "IMV";
           }
         ];
         video = [
           {
-            run = "mpv \"$@\"";
-            detach = true;
+            run = ''mpv "$@"'';
+            orphan = true;
             desc = "MPV";
           }
         ];
         text = [
           {
-            run = "nvim \"$@\"";
-            block = true;
+            run = ''nvim "$@"'';
             desc = "Neovim";
           }
         ];
       };
-      open = {
-        prepend_rules = [
-          {
-            mime = "application/pdf";
-            use = "pdf";
-          }
-          {
-            mime = "image/*";
-            use = "image";
-          }
-          {
-            mime = "video/*";
-            use = "video";
-          }
-          {
-            mime = "text/*";
-            use = "text";
-          }
-        ];
-      };
+
+      open.prepend_rules = [
+        {
+          mime = "application/pdf";
+          use = "pdf";
+        }
+        {
+          mime = "image/*";
+          use = "image";
+        }
+        {
+          mime = "video/*";
+          use = "video";
+        }
+        {
+          mime = "text/*";
+          use = "text";
+        }
+      ];
     };
 
     keymap = {
