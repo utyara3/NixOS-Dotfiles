@@ -8,27 +8,27 @@
       opener = {
         pdf = [
           {
-            run = ''okular "$@"'';
+            run = ''okular "\$@"'';
             desc = "Okular";
           }
         ];
         image = [
           {
-            run = ''imv "$@"'';
+            run = ''imv "\$@"'';
             orphan = true;
             desc = "IMV";
           }
         ];
         video = [
           {
-            run = ''mpv "$@"'';
+            run = ''mpv "\$@"'';
             orphan = true;
             desc = "MPV";
           }
         ];
         text = [
           {
-            run = ''nvim "$@"'';
+            run = ''nvim "\$@"'';
             block = true;
             desc = "Neovim";
           }
@@ -45,22 +45,21 @@
             mime = "image/*";
             use = "image";
           }
-          # Правило по MIME-типу видео
           {
             mime = "video/*";
             use = "video";
           }
-          # ИСПРАВЛЕНО: Правильный синтаксис Yazi для фильтрации по расширениям файлов
+          # ИСПРАВЛЕНО: актуальный синтаксис Yazi использует `url` вместо `name`/`ext`
           {
-            name = "*.mp4";
+            url = "*.mp4";
             use = "video";
           }
           {
-            name = "*.mkv";
+            url = "*.mkv";
             use = "video";
           }
           {
-            name = "*.webm";
+            url = "*.webm";
             use = "video";
           }
           {
@@ -69,7 +68,6 @@
           }
         ];
       };
-
     };
 
     keymap = {
@@ -92,7 +90,7 @@
           }
           {
             on = [ "<C-t>" ];
-            run = "shell \"$SHELL\" --block";
+            run = "shell \"\$SHELL\" --block";
             desc = "Open shell in current directory";
           }
         ];
