@@ -17,6 +17,7 @@
     qalculate-gtk
 
     # File manager
+    file
     yazi
 
     # Apps
