@@ -29,29 +29,46 @@
         text = [
           {
             run = ''nvim "$@"'';
+            block = true;
             desc = "Neovim";
           }
         ];
       };
 
-      open.prepend_rules = [
-        {
-          mime = "application/pdf";
-          use = "pdf";
-        }
-        {
-          mime = "image/*";
-          use = "image";
-        }
-        {
-          mime = "video/*";
-          use = "video";
-        }
-        {
-          mime = "text/*";
-          use = "text";
-        }
-      ];
+      open = {
+        prepend_rules = [
+          {
+            mime = "application/pdf";
+            use = "pdf";
+          }
+          {
+            mime = "image/*";
+            use = "image";
+          }
+          # Правила по MIME-типу видео
+          {
+            mime = "video/*";
+            use = "video";
+          }
+          # Резервные правила по расширениям (на случай, если MIME не отдаётся)
+          {
+            ext = "mp4";
+            use = "video";
+          }
+          {
+            ext = "mkv";
+            use = "video";
+          }
+          {
+            ext = "webm";
+            use = "video";
+          }
+          {
+            mime = "text/*";
+            use = "text";
+          }
+        ];
+      };
     };
 
     keymap = {

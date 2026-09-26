@@ -12,6 +12,8 @@
     tty-clock
     cmatrix
     pipes-rs
+    mpv
+    imv
 
     # Calculator
     qalculate-gtk
