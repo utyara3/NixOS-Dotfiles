@@ -3,6 +3,10 @@
 { pkgs, lib, ... }:
 
 {
+  home.sessionPath = [
+    "$HOME/.local/share/go/bin"
+  ];
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -15,6 +19,7 @@
       VISUAL = "nvim";
       LANG = "ru_RU.UTF-8";
       LC_ALL = "ru_RU.UTF-8";
+      GOPATH = "$HOME/.local/share/go";
     };
 
     history = {
@@ -89,6 +94,7 @@
         [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
       ''
     ];
+
   };
 
   # Прокачка CLI
