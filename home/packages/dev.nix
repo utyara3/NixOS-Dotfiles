@@ -8,5 +8,7 @@
     docker
     docker-compose
     lazydocker
+
+    nixfmt
   ];
 }

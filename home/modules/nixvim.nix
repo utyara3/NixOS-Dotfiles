@@ -30,12 +30,94 @@
       scrolloff = 8;
     };
 
+    extraFiles = {
+      "lua/utyara/terminal.lua".source = ./nixvim/lua/utyara/terminal.lua;
+      "lua/utyara/make.lua".source = ./nixvim/lua/utyara/make.lua;
+      "lua/utyara/diagnostics.lua".source = ./nixvim/lua/utyara/diagnostics.lua;
+    };
+
+    extraConfigLuaPost = ''
+      require("utyara.diagnostics").setup()
+
+      require("which-key").add({
+        { "<leader>b", group = "Buffer" },
+        { "<leader>c", group = "Code" },
+        { "<leader>d", group = "Diagnostics" },
+        { "<leader>f", group = "Find" },
+        { "<leader>m", group = "Make" },
+        { "<leader>t", group = "Terminal" },
+        { "<leader>u", group = "UI" },
+      })
+    '';
+
     keymaps = [
+      # ─────────────────────────────────────────────
+      # WINDOWS
+      # Ctrl+h/j/k/l = перемещение между окнами
+      # ─────────────────────────────────────────────
+
+      {
+        mode = "n";
+        key = "<C-h>";
+        action = "<cmd>wincmd h<cr>";
+        options.desc = "Focus left window";
+      }
+      {
+        mode = "n";
+        key = "<C-j>";
+        action = "<cmd>wincmd j<cr>";
+        options.desc = "Focus lower window";
+      }
+      {
+        mode = "n";
+        key = "<C-k>";
+        action = "<cmd>wincmd k<cr>";
+        options.desc = "Focus upper window";
+      }
+      {
+        mode = "n";
+        key = "<C-l>";
+        action = "<cmd>wincmd l<cr>";
+        options.desc = "Focus right window";
+      }
+
+      # То же самое из terminal-mode.
+      # Ctrl+\ Ctrl+n — выйти из terminal-mode,
+      # после чего переключить окно.
+      {
+        mode = "t";
+        key = "<C-h>";
+        action = "<C-\\><C-n><cmd>wincmd h<cr>";
+        options.desc = "Focus left window";
+      }
+      {
+        mode = "t";
+        key = "<C-j>";
+        action = "<C-\\><C-n><cmd>wincmd j<cr>";
+        options.desc = "Focus lower window";
+      }
+      {
+        mode = "t";
+        key = "<C-k>";
+        action = "<C-\\><C-n><cmd>wincmd k<cr>";
+        options.desc = "Focus upper window";
+      }
+      {
+        mode = "t";
+        key = "<C-l>";
+        action = "<C-\\><C-n><cmd>wincmd l<cr>";
+        options.desc = "Focus right window";
+      }
+
+      # ─────────────────────────────────────────────
+      # BUFFERS
+      # ─────────────────────────────────────────────
+
       {
         mode = "n";
         key = "<S-h>";
         action = "<cmd>bprevious<cr>";
-        options.desc = "Prev buffer";
+        options.desc = "Previous buffer";
       }
       {
         mode = "n";
@@ -45,12 +127,15 @@
       }
       {
         mode = "n";
-        key = "<leader>c";
+        key = "<leader>bd";
         action = "<cmd>bdelete<cr>";
-        options.desc = "Close buffer";
+        options.desc = "Delete buffer";
       }
 
-      # Файловый менеджер
+      # ─────────────────────────────────────────────
+      # EXPLORER
+      # ─────────────────────────────────────────────
+
       {
         mode = "n";
         key = "<leader>e";
@@ -58,7 +143,10 @@
         options.desc = "Toggle Explorer";
       }
 
-      # Поиск
+      # ─────────────────────────────────────────────
+      # SEARCH
+      # ─────────────────────────────────────────────
+
       {
         mode = "n";
         key = "<leader>ff";
@@ -81,22 +169,149 @@
         mode = "n";
         key = "<leader>fm";
         action = "<cmd>Telescope marks<cr>";
-        options.desc = "Jump to bookmarks";
+        options.desc = "Jump to marks";
       }
+
+      # ─────────────────────────────────────────────
+      # UI
+      # ─────────────────────────────────────────────
+
       {
         mode = "n";
         key = "<leader>um";
         action = "<cmd>RenderMarkdown toggle<cr>";
-        options.desc = "Toggle Markdown Rendering";
+        options.desc = "Toggle Markdown rendering";
       }
 
-      # Диагностика
+      # ─────────────────────────────────────────────
+      # CODE
+      # ─────────────────────────────────────────────
+
       {
         mode = "n";
-        key = "<leader>ld";
-        action.__raw = "function() vim.diagnostic.open_float() end";
-        options.desc = "Hover diagnostics";
+        key = "<leader>cf";
+        action.__raw = ''
+          function()
+            require("conform").format({
+              async = true,
+              lsp_format = "fallback",
+            })
+          end
+        '';
+        options.desc = "Format buffer";
       }
+
+      # ─────────────────────────────────────────────
+      # DIAGNOSTICS
+      # ─────────────────────────────────────────────
+
+      {
+        mode = "n";
+        key = "<leader>dd";
+        action.__raw = ''
+          function()
+            require("utyara.diagnostics").current_buffer()
+          end
+        '';
+        options.desc = "Current file diagnostics";
+      }
+
+      {
+        mode = "n";
+        key = "<leader>dw";
+        action.__raw = ''
+          function()
+            require("utyara.diagnostics").workspace()
+          end
+        '';
+        options.desc = "Workspace diagnostics";
+      }
+
+      {
+        mode = "n";
+        key = "<leader>dn";
+        action.__raw = ''
+          function()
+            require("utyara.diagnostics").next()
+          end
+        '';
+        options.desc = "Next diagnostic";
+      }
+
+      {
+        mode = "n";
+        key = "<leader>dp";
+        action.__raw = ''
+          function()
+            require("utyara.diagnostics").previous()
+          end
+        '';
+        options.desc = "Previous diagnostic";
+      }
+
+      {
+        mode = "n";
+        key = "<leader>de";
+        action.__raw = ''
+          function()
+            require("utyara.diagnostics").details()
+          end
+        '';
+        options.desc = "Explain diagnostic";
+      }
+
+      # ─────────────────────────────────────────────
+      # TERMINAL
+      # ─────────────────────────────────────────────
+
+      {
+        mode = "n";
+        key = "<leader>tt";
+        action.__raw = ''
+          function()
+            require("utyara.terminal").toggle()
+          end
+        '';
+        options.desc = "Toggle terminal";
+      }
+
+      # Можно закрыть/открыть терминал прямо из terminal-mode.
+      {
+        mode = "t";
+        key = "<leader>tt";
+        action = "<C-\\><C-n><cmd>lua require('utyara.terminal').toggle()<cr>";
+        options.desc = "Toggle terminal";
+      }
+
+      # ─────────────────────────────────────────────
+      # MAKE
+      # ─────────────────────────────────────────────
+
+      {
+        mode = "n";
+        key = "<leader>md";
+        action.__raw = ''
+          function()
+            require("utyara.make").default()
+          end
+        '';
+        options.desc = "Run default Make target";
+      }
+
+      {
+        mode = "n";
+        key = "<leader>mt";
+        action.__raw = ''
+          function()
+            require("utyara.make").pick()
+          end
+        '';
+        options.desc = "Choose Make target";
+      }
+
+      # ─────────────────────────────────────────────
+      # SAVE
+      # ─────────────────────────────────────────────
 
       {
         mode = [
@@ -109,12 +324,17 @@
         options.desc = "Save file";
       }
 
+      # ─────────────────────────────────────────────
+      # VISUAL
+      # ─────────────────────────────────────────────
+
       {
         mode = "v";
         key = "J";
         action = ":m '>+1<CR>gv=gv";
         options.desc = "Move line down";
       }
+
       {
         mode = "v";
         key = "K";
@@ -122,39 +342,17 @@
         options.desc = "Move line up";
       }
 
-      # При очистке поиска (ESC) убирать подсветку найденных слов
+      # ─────────────────────────────────────────────
+      # SEARCH
+      # ─────────────────────────────────────────────
+
       {
         mode = "n";
         key = "<esc>";
         action = "<cmd>noh<cr>";
         options.desc = "Clear search highlight";
       }
-
-      # lazygit
-      {
-        mode = "n";
-        key = "<leader>gg";
-        action = "<cmd>LazyGit<cr>";
-        options.desc = "Toggle LazyGit";
-      }
-
-      # --- Спортивное программирование (C++) ---
-      {
-        mode = "n";
-        key = "<F5>";
-        # Компилирует текущий файл и запускает в терминале справа
-        action = ":w<CR>:vsplit | terminal g++ -O2 -std=c++20 % -o %:r && ./%:r<CR>i";
-        options.desc = "CP: Compile & Run";
-      }
-      {
-        mode = "n";
-        key = "<F6>";
-        # Просто быстрая проверка компиляции без запуска
-        action = ":w<CR>:!g++ -O2 -std=c++20 % -o %:r<CR>";
-        options.desc = "CP: Quick Compile Check";
-      }
     ];
-
     colorschemes.catppuccin = {
       enable = true;
       settings.flavour = "mocha";
@@ -168,7 +366,6 @@
       which-key.enable = true;
       nvim-autopairs.enable = true;
       gitsigns.enable = true;
-      lazygit.enable = true;
       indent-blankline.enable = true;
 
       alpha = {
@@ -261,18 +458,31 @@
         enable = true;
         settings = {
           format_on_save = {
-            lsp_fallback = true;
+            lsp_format = "fallback";
             timeout_ms = 500;
           };
+
           formatters_by_ft = {
             python = [
-              "ruff_format"
               "ruff_fix"
+              "ruff_format"
             ];
-            nix = [ "nixpkgs-fmt" ];
-            gp = [ "gofumpt" ];
-            # Опционально: форматирование C++ кода при сохранении через clang-format
-            cpp = [ "clang-format" ];
+
+            nix = [
+              "nixfmt"
+            ];
+
+            go = [
+              "gofumpt"
+            ];
+
+            c = [
+              "clang-format"
+            ];
+
+            cpp = [
+              "clang-format"
+            ];
           };
         };
       };
@@ -295,7 +505,7 @@
           nixd = {
             enable = true;
             settings = {
-              formatting.command = [ "nixpkgs-fmt" ];
+              formatting.command = [ "nixfmt" ];
               nixpkgs.expr = "import <nixpkgs> { }";
               options = {
                 nixos.expr = "(builtins.getFlake \"/home/utyara3/nixos-config\").nixosConfigurations.nixos.options";
