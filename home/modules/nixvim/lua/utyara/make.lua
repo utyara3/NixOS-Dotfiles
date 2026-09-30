@@ -36,80 +36,138 @@ local function make_command(root, target)
 
   if has_direnv(root) then
     command = string.format(
-      "direnv exec %s make",
+      "direnv exec %s env LC_ALL=C make",
       vim.fn.shellescape(root)
     )
   else
-    command = "make"
+    command = "env LC_ALL=C make"
   end
 
   if target then
-    command = command .. " -- " .. vim.fn.shellescape(target)
+    command = command .. " " .. vim.fn.shellescape(target)
   end
 
   return command
 end
 
 local function parse_targets(output)
-  local all_targets = {}
-  local phony_targets = {}
+  local phony = {}
+
+  -- Сначала собираем .PHONY.
+  for line in output:gmatch("[^\r\n]+") do
+    local values = line:match("^%.PHONY:%s*(.*)$")
+
+    if values then
+      for target in values:gmatch("%S+") do
+        if not target:match("^%.") and not target:find("%%") then
+          phony[target] = true
+        end
+      end
+    end
+  end
+
+  local targets = {}
+  local seen = {}
 
   local in_files_section = false
+  local skip_not_target = false
+  local current = nil
+
+  local function add_target(target)
+    if not target
+      or target == ""
+      or target:match("^%.")
+      or target:find("%%")
+      or seen[target]
+    then
+      return
+    end
+
+    seen[target] = true
+    table.insert(targets, target)
+  end
+
+  local function finish_current()
+    if not current then
+      return
+    end
+
+    -- Берём:
+    -- 1. .PHONY targets
+    -- 2. targets, у которых есть recipe
+    for _, target in ipairs(current.names) do
+      if current.is_phony or current.has_recipe then
+        add_target(target)
+      end
+    end
+
+    current = nil
+  end
 
   for line in output:gmatch("[^\r\n]+") do
     if line == "# Files" then
       in_files_section = true
+      skip_not_target = false
 
-    elseif line:match("^# Implicit Rules") then
-      in_files_section = false
+    elseif in_files_section
+      and line:match("^# Finished Make data base")
+    then
+      finish_current()
+      break
 
     elseif in_files_section then
-      local phony = line:match("^%.PHONY:%s*(.*)$")
+      if line == "# Not a target:" then
+        finish_current()
+        skip_not_target = true
 
-      if phony then
-        for target in phony:gmatch("%S+") do
-          if not target:match("^%.") then
-            phony_targets[target] = true
-          end
+      elseif skip_not_target then
+        -- После "# Not a target:" следующая строка
+        -- обычно является самим именем файла/правила.
+        if line:match("^[^#%s]") then
+          skip_not_target = false
         end
-      end
 
-      local target_part = line:match("^([^#%s][^:]*):")
+      elseif line:match("^[^#%s][^:]*:") then
+        finish_current()
 
-      if target_part
-        and not target_part:find("=")
-        and not target_part:find("%$")
-      then
+        local target_part = line:match("^([^:]+):")
+        local names = {}
+
         for target in target_part:gmatch("%S+") do
-          if not target:match("^%.")
-            and not target:find("%%")
-          then
-            all_targets[target] = true
+          table.insert(names, target)
+        end
+
+        current = {
+          names = names,
+          has_recipe = false,
+          is_phony = false,
+        }
+
+        for _, target in ipairs(names) do
+          if phony[target] then
+            current.is_phony = true
+            break
           end
         end
+
+      elseif current
+        and line:match("^#%s+recipe to execute")
+      then
+        current.has_recipe = true
+
+      elseif line == "" then
+        finish_current()
       end
     end
   end
 
-  local result = {}
+  finish_current()
 
-  -- Если Makefile явно объявляет .PHONY,
-  -- считаем именно эти targets пользовательскими командами.
-  if next(phony_targets) then
-    for target in pairs(phony_targets) do
-      table.insert(result, target)
-    end
-  else
-    for target in pairs(all_targets) do
-      table.insert(result, target)
-    end
-  end
-
-  table.sort(result, function(a, b)
+  table.sort(targets, function(a, b)
     return a:lower() < b:lower()
   end)
 
-  return result
+  return targets
 end
 
 local function get_root_or_notify()
@@ -167,15 +225,19 @@ function M.pick()
       "direnv",
       "exec",
       root,
+      "env",
+      "LC_ALL=C",
       "make",
-      "-qp",
+      "-qpRr",
       "-f",
       makefile,
     }
   else
     command = {
+      "env",
+      "LC_ALL=C",
       "make",
-      "-qp",
+      "-qpRr",
       "-f",
       makefile,
     }
@@ -189,7 +251,7 @@ function M.pick()
     },
     function(result)
       vim.schedule(function()
-        if not result.stdout or result.stdout == "" then
+        if result.stdout == nil or result.stdout == "" then
           local error_text = result.stderr
 
           if not error_text or error_text == "" then
