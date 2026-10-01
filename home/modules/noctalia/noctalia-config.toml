@@ -1,34 +1,50 @@
-# home/modules/noctalia/noctalia-config.toml
-
 [audio]
 enable_overdrive = true
 
 [bar.default]
-# Чуть-чуть уменьшаем плотность фона для более мягкого размытия
-background_opacity = 0.65
+background_opacity = 0.84999998100101948
 border = "primary"
 center = [ "date", "clock", "caffeine" ]
 end = [ "ram", "tray", "network", "bluetooth", "notifications", "volume", "brightness", "battery", "session" ]
-
-# Отодвигаем панель от края экрана, делая её парящим "островком" (как в iOS/macOS)
-margin_edge = 12
-margin_ends = 180
+margin_edge = 3
+margin_ends = 200
 panel_overlap = 0
 start = [ "launcher", "wallpaper", "workspaces", "media", "audio_visualizer" ]
-widget_spacing = 14 # Немного больше воздуха между виджетами
+widget_spacing = 12
 
 [battery]
-warning_threshold = 20
+warning_threshold = 40
 
     [battery.device."/org/freedesktop/UPower/devices/headset_dev_98_34_8C_F6_6A_1D"]
     warning_threshold = 20
 
+[calendar]
+
 [control_center]
+show_shortcut_labels = false
 sidebar = "full"
 sidebar_section = "full"
 
     [control_center.calendar]
     show_events_card = false
+
+    [[control_center.shortcuts]]
+    type = "wifi"
+
+    [[control_center.shortcuts]]
+    type = "bluetooth"
+
+    [[control_center.shortcuts]]
+    type = "notification"
+
+    [[control_center.shortcuts]]
+    type = "caffeine"
+
+    [[control_center.shortcuts]]
+    type = "power_profile"
+
+    [[control_center.shortcuts]]
+    type = "mic_mute"
 
 [desktop_widgets]
 enabled = true
@@ -42,18 +58,24 @@ widget_order = []
 
     [desktop_widgets.widget]
 
+[dock]
+auto_hide = true
+enabled = true
+launcher_position = "start"
+margin_edge = 10
+reserve_space = false
+
 [idle]
 pre_action_fade_seconds = 5
 
 [location]
 address = "Russia, Yaroslavl"
 auto_locate = false
-latitude = 63.5651
-longitude = 53.6874
+latitude = 63.565100000000001
+longitude = 53.687399999999997
 
 [lockscreen]
-# Увеличиваем интенсивность размытия экрана блокировки для максимальной мягкости заднего плана
-blur_intensity = 0.65
+blur_intensity = 0.39999999105930328
 blurred_desktop = true
 
 [lockscreen_widgets]
@@ -86,11 +108,11 @@ widget_order = [
 
         [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
         background_color = "surface_variant"
-        background_opacity = 0.75 # Делаем форму логина нежнее
-        background_radius = 18.0   # Закругляем под стиль Niri (18px)
+        background_opacity = 0.88
+        background_radius = 12.0
         center_password_text = false
         input_opacity = 1.0
-        input_radius = 8.0
+        input_radius = 6.0
         layout = "regular"
         show_caps_lock = true
         show_keyboard_layout = true
@@ -150,14 +172,17 @@ widget_order = [
 
     [lockscreen_widgets.widget.lockscreen-widget-0000000000000004]
     box_height = 336.0
-    box_width = 416.0
-    cx = 720.0
+    box_width = 432.0
+    cx = 728.0
     cy = 1000.0
     output = "eDP-1"
     placement_height = 1200.0
     placement_width = 1920.0
     rotation = 0.0
     type = "weather"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000004.settings]
+        show_forecast = true
 
     [lockscreen_widgets.widget.lockscreen-widget-0000000000000005]
     box_height = 464.0
@@ -170,30 +195,98 @@ widget_order = [
     rotation = 0.0
     type = "calendar"
 
+[osd]
+border = false
+
+    [osd.kinds]
+    lock_keys = false
+
 [plugins]
 enabled = []
 
 [shell]
 app_icon_color = "on_surface"
 app_icon_colorize = true
-lang = "en"
-niri_overview_type_to_launch_enabled = true
+button_borders = false
+card_borders = false
+input_borders = false
+lang = "ru"
+niri_overview_type_to_launch_enabled = false
+password_style = "random"
+popup_borders = false
 screen_time_enabled = true
 time_format = "{:%H:%M:%S}"
+
+    [shell.animation]
+    speed = 0.7500000111758709
 
     [shell.launcher]
     categories = false
 
     [shell.panel]
-    # ВКЛЮЧАЕМ НАПЫЛЕННОЕ МЯГКОЕ РАЗМЫТИЕ вместо glass
-    transparency_mode = "transparent_blur"
+    borders = false
+    control_center_position = "center"
+    transparency_mode = "glass"
 
     [shell.screenshot]
+    annotate = true
+    confirm_region = true
     directory = "/home/utyara3/Pictures/Screenshots"
+    filename_pattern = "Screenshot from %Y-%m-%d %H-%M-%S"
+    remember_last_region = true
+    show_cursor = true
+
+    [shell.session]
+    grid = true
+
+        [[shell.session.actions]]
+        action = "lock"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "1"
+        variant = "default"
+
+        [[shell.session.actions]]
+        action = "logout"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "2"
+        variant = "default"
+
+        [[shell.session.actions]]
+        action = "lock_and_suspend"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "3"
+        variant = "default"
+
+        [[shell.session.actions]]
+        action = "reboot"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "4"
+        variant = "default"
+
+        [[shell.session.actions]]
+        action = "shutdown"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "5"
+        variant = "destructive"
+
+        [[shell.session.actions]]
+        action = "command"
+        command = "notify-send 'Noctalia' 'Custom session entry'"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "6"
+        variant = "default"
+
+    [shell.shadow]
+    alpha = 0.99999997764825821
 
 [theme]
-# Меняем контрастный Gruvbox на эталон пастельной эстетики Catppuccin
-builtin = "Catppuccin"
+builtin = "Gruvbox"
 community_palette = "ADW"
 mode = "dark"
 source = "wallpaper"
@@ -201,19 +294,35 @@ wallpaper_scheme = "faithful"
 
     [theme.templates]
     builtin_ids = [ "btop", "cava", "gtk3", "gtk4", "kitty", "niri", "qt" ]
-    community_ids = [ "zen-browser", "neovim", "obsidian", "vscode", "discord", "obs", "steam", "telegram", "yazi" ]
+    community_ids = [
+        "opencode",
+        "zen-browser",
+        "discord",
+        "telegram",
+        "gimp",
+        "libreoffice",
+        "neovim",
+        "obsidian",
+        "vscode",
+        "steam",
+        "obs",
+        "papirus-icons",
+        "fzf",
+        "lazygit",
+        "yazi"
+    ]
 
 [wallpaper]
 directory = "/home/utyara3/Pictures/Images/Wallpapers"
 
     [wallpaper.default]
-    path = "/home/utyara3/Pictures/Images/Wallpapers/red_guy.png"
+    path = "/home/utyara3/Pictures/Images/Wallpapers/cc_frown.jpg"
 
     [wallpaper.last]
-    path = "/home/utyara3/Pictures/Images/Wallpapers/red_guy.png"
+    path = "/home/utyara3/Pictures/Images/Wallpapers/cc_frown.jpg"
 
     [wallpaper.monitors.eDP-1]
-    path = "/home/utyara3/Pictures/Images/Wallpapers/red_guy.png"
+    path = "/home/utyara3/Pictures/Images/Wallpapers/cc_frown.jpg"
 
 [widget.battery]
 enabled = true
@@ -221,6 +330,8 @@ enabled = true
 [widget.cat]
 type = "noctalia/bongocat:cat"
 
+[widget.clock]
+format = "{:%H:%M:%S}"
+
 [widget.network]
 show_label = false
-
