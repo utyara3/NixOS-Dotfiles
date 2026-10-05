@@ -38,11 +38,11 @@
     };
 
     nix-flatpak = {
-      url = "github:gmodena/nix-flatpak/?ref=v0.7.0";
+      url = "github:gmodena/nix-flatpak";
     };
 
     voxtype = {
-      url = "github:peteonrails/voxtype/v0.7.5";
+      url = "github:peteonrails/voxtype";
     };
   };
 
