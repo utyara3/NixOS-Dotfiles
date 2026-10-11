@@ -133,10 +133,15 @@ in
         {
           matches = [ { app-id = "kitty"; } ];
           draw-border-with-background = false;
+          default-column-width = {
+            proportion = 0.5;
+          };
         }
         {
           matches = [ { title = "^Picture-in-Picture$"; } ];
           open-floating = true;
+        }
+        {
         }
       ];
 
