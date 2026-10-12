@@ -515,7 +515,16 @@
           };
           pyright = {
             enable = true;
-            settings.python.analysis.ignore = [ "*" ];
+            settings = {
+              python = {
+                analysis = {
+                  autoSearchPath = true;
+                  diagnosticMode = "openFilesOnly";
+                  typeCheckingMode = "basic";
+                };
+              };
+            };
+            # settings.python.analysis.ignore = [ "*" ];
           };
 
           ruff.enable = true;
