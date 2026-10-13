@@ -46,6 +46,13 @@
       clc = "fn -ln -1 | wl-copy";
       notes = "nvim ~/Documents/helper/";
       n = "nvim";
+
+      # Git aliases
+      gs = "git status";
+      gd = "git diff";
+      ga = "git add";
+      gc = "git commit";
+      gp = "git push";
     };
 
     oh-my-zsh = {
