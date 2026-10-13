@@ -4,7 +4,7 @@
 
 let
   terminal = "kitty";
-  # vpnApp = "happ";
+  vpnApp = "happ";
   fileManager = "kitty -e yazi";
   fileManager2 = "thunar";
   browser = "zen";
@@ -154,6 +154,9 @@ in
         "Mod+Shift+Slash".action.show-hotkey-overlay = [ ];
         "Caps_Lock".action.switch-layout = [ "next" ];
         "Mod+Shift+C".action.spawn = [ "qalculate-gtk" ];
+
+        "Mod+D".action.spawn = [ "discord" ];
+        "Mod+Shift+V".action.spawn = [ vpnApp ];
 
         "Mod+A".action.spawn = [ "AyuGram" ];
         "F12".action.spawn = [
