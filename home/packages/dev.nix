@@ -13,5 +13,8 @@
 
     # Translator
     dialect
+
+    # Remote desk
+    rustdesk
   ];
 }
