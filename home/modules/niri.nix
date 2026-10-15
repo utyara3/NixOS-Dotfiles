@@ -165,6 +165,7 @@ in
           "toggle"
         ];
         "Mod+T".action.spawn = [ "${terminal}" ];
+        "Mod+Shift+T".action.spawn = [ "dialect" ];
 
         "Mod+E".action.spawn = [
           "sh"

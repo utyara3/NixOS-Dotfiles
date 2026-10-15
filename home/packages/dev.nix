@@ -10,5 +10,8 @@
     lazydocker
 
     nixfmt
+
+    # Translator
+    dialect
   ];
 }
