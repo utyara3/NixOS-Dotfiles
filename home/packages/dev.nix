@@ -15,6 +15,6 @@
     dialect
 
     # Remote desk
-    rustdesk
+    rustdesk-flutter
   ];
 }
