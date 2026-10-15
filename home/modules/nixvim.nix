@@ -47,6 +47,7 @@
         { "<leader>m", group = "Make" },
         { "<leader>t", group = "Terminal" },
         { "<leader>u", group = "UI" },
+        { "<leader>s", group = "Supermaven"},
       })
     '';
 
@@ -351,6 +352,17 @@
         key = "<esc>";
         action = "<cmd>noh<cr>";
         options.desc = "Clear search highlight";
+      }
+
+      # ─────────────────────────────────────────────
+      # SUPERMAVEN
+      # ─────────────────────────────────────────────
+
+      {
+        mode = "n";
+        key = "<leader>st";
+        action = "<cmd>SupermavenToggle<cr>";
+        options.desc = "Toggle Supermaven";
       }
     ];
     colorschemes.catppuccin = {
