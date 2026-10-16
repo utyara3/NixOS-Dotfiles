@@ -111,7 +111,7 @@
     steam.enable = true;
     gamescope.enable = true;
     gamemode.enable = true;
-    noctalia.enable = true;
+    # noctalia.enable = true;
 
     localsend = {
       enable = true;
