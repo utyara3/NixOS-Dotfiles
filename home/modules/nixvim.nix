@@ -451,7 +451,7 @@
           mapping = {
             "<CR>" = "cmp.mapping.confirm({ select = false })";
             "<S-Tab>" = "cmp.mapping.select_next_item()";
-            "<C-Tab>" = "cmp.mapping.select_prev_item()";
+            "<C-S-Tab>" = "cmp.mapping.select_prev_item()";
             # Добавим принудительный вызов окна подсказок, если оно закрылось
             "<C-Space>" = "cmp.mapping.complete()";
           };
