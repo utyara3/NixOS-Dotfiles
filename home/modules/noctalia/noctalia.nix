@@ -13,6 +13,7 @@
 
   programs.noctalia = {
     enable = true;
+    systemd.enable = true;
 
     # Автоматически подргужаем настройки из импортированного toml-файла
     settings = builtins.fromTOML (builtins.readFile "${./noctalia-config.toml}");
