@@ -1,10 +1,14 @@
 # home/modules/noctalia/noctalia.nix
 
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports = [
     inputs.noctalia.homeModules.default
+  ];
+
+  home.packages = [
+    inputs.noctalia.packages.${pkgs.system}.default
   ];
 
   programs.noctalia = {
