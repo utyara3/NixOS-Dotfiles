@@ -7,7 +7,7 @@ let
   vpnApp = "happ";
   fileManager = "kitty -e yazi";
   fileManager2 = "thunar";
-  browser = "zen";
+  browser = "zen-beta";
 in
 {
   programs.niri = {
