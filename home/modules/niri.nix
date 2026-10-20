@@ -3,11 +3,19 @@
 { pkgs, ... }:
 
 let
-  terminal = "kitty";
-  vpnApp = "happ";
-  fileManager = "kitty -e yazi";
-  fileManager2 = "thunar";
-  browser = "zen-beta";
+  desktop = import ../config/desktop.nix;
+
+  commonBinds = builtins.listToAttrs (
+    map (binding: {
+      name = binding.key;
+      value.action.spawn = binding.command;
+    }) desktop.spawnBindings
+  );
+  # terminal = "kitty";
+  # vpnApp = "happ";
+  # fileManager = "kitty -e yazi";
+  # fileManager2 = "thunar";
+  # browser = "zen-beta";
 in
 {
   programs.niri = {
@@ -27,8 +35,8 @@ in
 
       input = {
         keyboard.xkb = {
-          layout = "us,ru";
-          options = "grp:caps_toggle";
+          layout = desktop.keyboard.layout;
+          options = desktop.keyboard.options;
         };
 
         warp-mouse-to-focus = {
@@ -150,86 +158,86 @@ in
         { command = [ "xwayland-satellite" ]; }
       ];
 
-      binds = {
+      binds = commonBinds // {
         "Mod+Shift+Slash".action.show-hotkey-overlay = [ ];
         "Caps_Lock".action.switch-layout = [ "next" ];
-        "Mod+Shift+C".action.spawn = [ "qalculate-gtk" ];
+        # "Mod+Shift+C".action.spawn = [ "qalculate-gtk" ];
 
-        "Mod+D".action.spawn = [ "discord" ];
-        "Mod+Shift+V".action.spawn = [ vpnApp ];
+        # "Mod+D".action.spawn = [ "discord" ];
+        # "Mod+Shift+V".action.spawn = [ vpnApp ];
 
-        "Mod+A".action.spawn = [ "AyuGram" ];
-        "F12".action.spawn = [
-          "voxtype"
-          "record"
-          "toggle"
-        ];
-        "Mod+T".action.spawn = [ "${terminal}" ];
-        "Mod+Shift+T".action.spawn = [ "dialect" ];
+        # "Mod+A".action.spawn = [ "AyuGram" ];
+        # "F12".action.spawn = [
+        #   "voxtype"
+        #   "record"
+        #   "toggle"
+        # ];
+        # "Mod+T".action.spawn = [ "${terminal}" ];
+        # "Mod+Shift+T".action.spawn = [ "dialect" ];
 
-        "Mod+E".action.spawn = [
-          "sh"
-          "-c"
-          "${fileManager}"
-        ];
-        "Mod+Shift+E".action.spawn = [
-          "sh"
-          "-c"
-          "${fileManager2}"
-        ];
-        "Mod+B".action.spawn = [ "${browser}" ];
-        "Mod+R".action.spawn = [
-          "noctalia"
-          "msg"
-          "panel-toggle"
-          "launcher"
-        ];
-        "Mod+C".action.spawn = [
-          "noctalia"
-          "msg"
-          "panel-toggle"
-          "clipboard"
-        ];
-        "Mod+Escape".action.spawn = [
-          "noctalia"
-          "msg"
-          "session"
-          "lock"
-        ];
-        "Mod+M".action.spawn = [
-          "noctalia"
-          "msg"
-          "panel-toggle"
-          "session"
-        ];
-        "Mod+O".action.spawn = [ "obsidian" ];
-        "Mod+Shift+O".action.spawn = [ "obs" ];
-        "Mod+N".action.spawn = [
-          "noctalia"
-          "msg"
-          "panel-toggle"
-          "control-center"
-          "notifications"
-        ];
-        "Mod+W".action.spawn = [
-          "noctalia"
-          "msg"
-          "panel-toggle"
-          "wallpaper"
-        ];
-        "Mod+Shift+W".action.spawn = [
-          "noctalia"
-          "msg"
-          "panel-toggle"
-          "control-center"
-          "network"
-        ];
-        "Mod+I".action.spawn = [
-          "noctalia"
-          "msg"
-          "panel-toggle"
-          "control-center"
-        ];
+        # "Mod+E".action.spawn = [
+        #   "sh"
+        #   "-c"
+        #   "${fileManager}"
+        # ];
+        # "Mod+Shift+E".action.spawn = [
+        #   "sh"
+        #   "-c"
+        #   "${fileManager2}"
+        # ];
+        # "Mod+B".action.spawn = [ "${browser}" ];
+        # "Mod+R".action.spawn = [
+        #   "noctalia"
+        #   "msg"
+        #   "panel-toggle"
+        #   "launcher"
+        # ];
+        # "Mod+C".action.spawn = [
+        #   "noctalia"
+        #   "msg"
+        #   "panel-toggle"
+        #   "clipboard"
+        # ];
+        # "Mod+Escape".action.spawn = [
+        #   "noctalia"
+        #   "msg"
+        #   "session"
+        #   "lock"
+        # ];
+        # "Mod+M".action.spawn = [
+        #   "noctalia"
+        #   "msg"
+        #   "panel-toggle"
+        #   "session"
+        # ];
+        # "Mod+O".action.spawn = [ "obsidian" ];
+        # "Mod+Shift+O".action.spawn = [ "obs" ];
+        # "Mod+N".action.spawn = [
+        #   "noctalia"
+        #   "msg"
+        #   "panel-toggle"
+        #   "control-center"
+        #   "notifications"
+        # ];
+        # "Mod+W".action.spawn = [
+        #   "noctalia"
+        #   "msg"
+        #   "panel-toggle"
+        #   "wallpaper"
+        # ];
+        # "Mod+Shift+W".action.spawn = [
+        #   "noctalia"
+        #   "msg"
+        #   "panel-toggle"
+        #   "control-center"
+        #   "network"
+        # ];
+        # "Mod+I".action.spawn = [
+        #   "noctalia"
+        #   "msg"
+        #   "panel-toggle"
+        #   "control-center"
+        # ];
 
         "Mod+V".action.toggle-window-floating = [ ];
         "Mod+P".action.switch-preset-column-width = [ ];

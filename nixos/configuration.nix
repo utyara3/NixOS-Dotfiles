@@ -19,6 +19,7 @@
     ./desktop/niri.nix
     ./desktop/audio.nix
     ./desktop/fonts.nix
+    ./desktop/umbriel.nix
 
     # Services
     ./services/virtualisation.nix
@@ -51,6 +52,7 @@
       "https://ayugram-desktop.cachix.org"
       "https://tg-owt.cachix.org"
       "https://noctalia.cachix.org"
+      "https://umbriel.cachix.org"
     ];
 
     trusted-public-keys = [
@@ -58,6 +60,7 @@
       "ayugram-desktop.cachix.org-1:AZ5EqHrJsAKL5YkZYLPEsb1FdD9QlypUwQ0REcJftgA="
       "tg-owt.cachix.org-1:lp0BukIhSK3EIyLcDhDZ5zABgT48nmNp6t4SnZ0wr8w="
       "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+      "umbriel.cachix.org-1:JfNq/2yg2S6D6z4Z2dVSZrZlDPQTKtexB6GAVLD98nw="
     ];
   };
 

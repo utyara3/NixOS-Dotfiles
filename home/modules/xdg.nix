@@ -24,6 +24,15 @@
           "gtk"
         ];
       };
+
+      umbriel = {
+        default = [
+          "umbriel"
+          "gtk"
+        ];
+        "org.freedesktop.impl.portal.ScreenCast" = [ "umbriel" ];
+        "org.freedesktop.impl.portal.Screenshot" = [ "umbriel" ];
+      };
     };
   };
 

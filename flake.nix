@@ -16,6 +16,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    umbriel.url = "github:noctalia-dev/umbriel/cachix";
+
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
 
     zen-browser = {
@@ -62,6 +64,7 @@
             ./nixos/configuration.nix
 
             inputs.noctalia.nixosModules.default
+            inputs.umbriel.nixosModules.default
 
             "${inputs.happ-nixos}/happ-module.nix"
 

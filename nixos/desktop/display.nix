@@ -15,8 +15,13 @@
   };
 
   # GDM (экран входа в систему)
-  services.displayManager.gdm = {
+  services.displayManager.gdm.enable = false;
+
+  services.displayManager.noctalia-greeter = {
     enable = true;
+    settings = {
+      keyboard.layout = "us,ru";
+    };
   };
 
   # Применяем в tty
