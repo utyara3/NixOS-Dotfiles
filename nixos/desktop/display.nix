@@ -1,6 +1,6 @@
 # nixos/desktop/display.nix
 
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   # Нужно для того чтобы Happ (и прочие) запускались
@@ -14,11 +14,12 @@
     };
   };
 
-  # GDM (экран входа в систему)
-  services.displayManager.gdm.enable = false;
+  # GDM (экран входа в систему от GNOME)
+  services.displayManager.gdm.enable = true;
 
+  # Noctalia greeter (экран входа в систему от Noctalia)
   services.displayManager.noctalia-greeter = {
-    enable = true;
+    enable = false;
     settings = {
       keyboard.layout = "us,ru";
     };
@@ -29,6 +30,11 @@
 
   # GNOME (если понадобится - раскомментировать)
   # services.desktopManager.gnome.enable = true;
+
+  environment.systemPackages = [
+    inputs.noctalia.packages.${pkgs.system}.default
+    pkgs.gdm
+  ];
 
   # Включаем Thunar на уровне системы
   programs.thunar = {
