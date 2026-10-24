@@ -25,6 +25,8 @@
     };
   };
 
+  services.displayManager.defaultSession = "umbriel";
+
   # Применяем в tty
   console.useXkbConfig = true;
 
