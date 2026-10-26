@@ -29,6 +29,7 @@ in
     translate-shell
     ffmpeg
     postgresql_18
+    xhost
 
     # Wayland essentials
     wl-clipboard
