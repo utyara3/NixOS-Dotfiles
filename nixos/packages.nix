@@ -30,6 +30,7 @@ in
     ffmpeg
     postgresql_18
     xhost
+    iw
 
     # Wayland essentials
     wl-clipboard
