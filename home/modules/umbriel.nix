@@ -6,7 +6,7 @@ let
   commonKeybinds = builtins.listToAttrs (
     map (binding: {
       name = binding.key;
-      value = "spawn:${lib.escapeShellArgs binding.command}";
+      value = "spawn ${lib.escapeShellArgs binding.command}";
     }) desktop.spawnBindings
   );
 
@@ -21,8 +21,8 @@ let
     "Mod+Ctrl+F" = "window-toggle-fullscreen";
     "Mod+Tab" = "overview-toggle";
 
-    "Mod+Minus" = "window-modify-primary-extent:-0.05";
-    "Mod+Equal" = "window-modify-primary-extent:0.05";
+    "Mod+Minus" = "window-modify-primary-extent -0.05";
+    "Mod+Equal" = "window-modify-primary-extent 0.05";
 
     "Mod+H" = "window-focus-left";
     "Mod+L" = "window-focus-right";
@@ -37,51 +37,51 @@ let
     "Mod+Ctrl+H" = "window-consume-or-expel-left";
     "Mod+Ctrl+L" = "window-consume-or-expel-right";
 
-    "Mod+Ctrl+Minus" = "window-modify-height-down:-0.05";
-    "Mod+Ctrl+Equal" = "window-modify-height-down:0.05";
+    "Mod+Ctrl+Minus" = "window-modify-height-down -0.05";
+    "Mod+Ctrl+Equal" = "window-modify-height-down 0.05";
 
-    "Mod+1" = "workspace-switch:1";
-    "Mod+2" = "workspace-switch:2";
-    "Mod+3" = "workspace-switch:3";
-    "Mod+4" = "workspace-switch:4";
-    "Mod+5" = "workspace-switch:5";
-    "Mod+6" = "workspace-switch:6";
-    "Mod+7" = "workspace-switch:7";
-    "Mod+8" = "workspace-switch:8";
-    "Mod+9" = "workspace-switch:9";
-    "Mod+0" = "workspace-switch:10";
+    "Mod+1" = "workspace-switch 1";
+    "Mod+2" = "workspace-switch 2";
+    "Mod+3" = "workspace-switch 3";
+    "Mod+4" = "workspace-switch 4";
+    "Mod+5" = "workspace-switch 5";
+    "Mod+6" = "workspace-switch 6";
+    "Mod+7" = "workspace-switch 7";
+    "Mod+8" = "workspace-switch 8";
+    "Mod+9" = "workspace-switch 9";
+    "Mod+0" = "workspace-switch 10";
 
-    "Mod+Shift+1" = "column-move-to-workspace:1";
-    "Mod+Shift+2" = "column-move-to-workspace:2";
-    "Mod+Shift+3" = "column-move-to-workspace:3";
-    "Mod+Shift+4" = "column-move-to-workspace:4";
-    "Mod+Shift+5" = "column-move-to-workspace:5";
-    "Mod+Shift+6" = "column-move-to-workspace:6";
-    "Mod+Shift+7" = "column-move-to-workspace:7";
-    "Mod+Shift+8" = "column-move-to-workspace:8";
-    "Mod+Shift+9" = "column-move-to-workspace:9";
-    "Mod+Shift+0" = "column-move-to-workspace:10";
+    "Mod+Shift+1" = "column-move-to-workspace 1";
+    "Mod+Shift+2" = "column-move-to-workspace 2";
+    "Mod+Shift+3" = "column-move-to-workspace 3";
+    "Mod+Shift+4" = "column-move-to-workspace 4";
+    "Mod+Shift+5" = "column-move-to-workspace 5";
+    "Mod+Shift+6" = "column-move-to-workspace 6";
+    "Mod+Shift+7" = "column-move-to-workspace 7";
+    "Mod+Shift+8" = "column-move-to-workspace 8";
+    "Mod+Shift+9" = "column-move-to-workspace 9";
+    "Mod+Shift+0" = "column-move-to-workspace 10";
 
     "Mod+WheelDown" = "workspace-next";
     "Mod+WheelUp" = "workspace-previous";
 
-    "Print" = "spawn:noctalia msg screenshot-region";
-    "Shift+Print" = "spawn:noctalia msg screenshot-fullscreen";
-    "Ctrl+Print" = "spawn:noctalia msg screenshot-annotate";
-    "Mod+Print" = "spawn:noctalia msg screenshot-fullscreen pick";
+    "Print" = "spawn noctalia msg screenshot-region";
+    "Shift+Print" = "spawn noctalia msg screenshot-fullscreen";
+    "Ctrl+Print" = "spawn noctalia msg screenshot-annotate";
+    "Mod+Print" = "spawn noctalia msg screenshot-fullscreen pick";
 
-    "XF86AudioRaiseVolume" = "spawn:wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+";
-    "XF86AudioLowerVolume" = "spawn:wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
-    "XF86AudioMute" = "spawn:wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
-    "XF86AudioMicMute" = "spawn:wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+    "XF86AudioRaiseVolume" = "spawn wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+";
+    "XF86AudioLowerVolume" = "spawn wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
+    "XF86AudioMute" = "spawn wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+    "XF86AudioMicMute" = "spawn wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
 
-    "XF86MonBrightnessUp" = "spawn:brightnessctl -e4 -n2 set 5%+";
-    "XF86MonBrightnessDown" = "spawn:brightnessctl -e4 -n2 set 5%-";
+    "XF86MonBrightnessUp" = "spawn brightnessctl -e4 -n2 set 5%+";
+    "XF86MonBrightnessDown" = "spawn brightnessctl -e4 -n2 set 5%-";
 
-    "XF86AudioNext" = "spawn:playerctl next";
-    "XF86AudioPause" = "spawn:playerctl play-pause";
-    "XF86AudioPlay" = "spawn:playerctl play-pause";
-    "XF86AudioPrev" = "spawn:playerctl previous";
+    "XF86AudioNext" = "spawn playerctl next";
+    "XF86AudioPause" = "spawn playerctl play-pause";
+    "XF86AudioPlay" = "spawn playerctl play-pause";
+    "XF86AudioPrev" = "spawn playerctl previous";
 
   };
 in
