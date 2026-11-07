@@ -17,6 +17,10 @@ in
 
   spawnBindings = [
     {
+      key = "Mod+Z";
+      command = [ "zeditor" ];
+    }
+    {
       key = "Mod+Shift+C";
       command = [ "qalculate-gtk" ];
     }
