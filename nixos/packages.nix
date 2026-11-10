@@ -31,6 +31,8 @@ in
     postgresql_18
     xhost
     iw
+    nix-output-monitor
+    nvd
 
     # Wayland essentials
     wl-clipboard
