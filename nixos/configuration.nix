@@ -27,6 +27,7 @@
     ./services/power.nix
     ./services/tlp.nix
     ./services/v2rayA.nix
+    ./services/minecraft-lan.nix
     ./services/flatpak.nix
     ./services/postgresql.nix
   ];
