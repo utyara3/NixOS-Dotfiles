@@ -1,4 +1,5 @@
 [audio]
+colorize_icons = true
 enable_overdrive = true
 enable_sounds = false
 
@@ -61,6 +62,7 @@ widget_order = []
 
 [dock]
 auto_hide = true
+colorize_icons = true
 enabled = true
 launcher_position = "start"
 margin_edge = 10
@@ -110,7 +112,7 @@ widget_order = [
     type = "login_box"
 
         [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
-        background_color = "surface_variant"
+        background_color = "surface_container"
         background_opacity = 0.88
         background_radius = 12.0
         center_password_text = false
@@ -198,25 +200,34 @@ widget_order = [
     rotation = 0.0
     type = "calendar"
 
+[notification]
+colorize_icons = true
+
 [osd]
 border = false
 
     [osd.kinds]
     lock_keys = false
 
+[plugin_settings."avivbintangaringga/nix-monitor"]
+generation_check_interval = 100
+update_check_duration_threshold = 30
+update_check_interval = 100
+
 [plugins]
-enabled = [ "avivbintangaringga/nix-monitor" ]
+enabled = []
 
 [shell]
 app_icon_color = "on_surface"
-app_icon_colorize = true
 button_borders = false
 card_borders = false
 input_borders = false
 lang = "ru"
 niri_overview_type_to_launch_enabled = false
 password_style = "random"
+polkit_colorize_icons = true
 popup_borders = false
+screen_time_colorize_icons = true
 screen_time_enabled = true
 time_format = "{:%H:%M:%S}"
 
@@ -225,6 +236,7 @@ time_format = "{:%H:%M:%S}"
 
     [shell.launcher]
     categories = false
+    colorize_icons = true
 
     [shell.panel]
     borders = false
@@ -288,15 +300,18 @@ time_format = "{:%H:%M:%S}"
     [shell.shadow]
     alpha = 0.99999997764825821
 
+    [shell.window_switcher]
+    colorize_icons = true
+
 [theme]
-builtin = "Gruvbox"
-community_palette = "ADW"
+builtin = "Kanagawa"
+community_palette = "Atuel"
 mode = "dark"
 source = "wallpaper"
 wallpaper_scheme = "faithful"
 
     [theme.templates]
-    builtin_ids = [ "btop", "cava", "gtk3", "gtk4", "kitty", "niri", "qt" ]
+    builtin_ids = [ "btop", "cava", "gtk3", "gtk4", "kitty", "niri", "qt", "umbriel" ]
     community_ids = [
         "opencode",
         "zen-browser",
@@ -305,7 +320,6 @@ wallpaper_scheme = "faithful"
         "gimp",
         "libreoffice",
         "neovim",
-        "obsidian",
         "vscode",
         "steam",
         "obs",
@@ -319,13 +333,16 @@ wallpaper_scheme = "faithful"
 directory = "/home/utyara3/Pictures/Images/Wallpapers"
 
     [wallpaper.default]
-    path = "/home/utyara3/Pictures/Images/Wallpapers/vikulya1.jpg"
+    path = "/home/utyara3/Pictures/Images/Wallpapers/snow_forest.jpg"
 
     [wallpaper.last]
-    path = "/home/utyara3/Pictures/Images/Wallpapers/vikulya1.jpg"
+    path = "/home/utyara3/Pictures/Images/Wallpapers/snow_forest.jpg"
 
     [wallpaper.monitors.eDP-1]
-    path = "/home/utyara3/Pictures/Images/Wallpapers/vikulya1.jpg"
+    path = "/home/utyara3/Pictures/Images/Wallpapers/snow_forest.jpg"
+
+[widget.active_window]
+colorize_icons = true
 
 [widget.battery]
 enabled = true
@@ -341,3 +358,12 @@ show_label = false
 
 [widget.nix-monitor]
 type = "avivbintangaringga/nix-monitor:nix-monitor"
+
+[widget.taskbar]
+colorize_icons = true
+
+[widget.tray]
+colorize_icons = true
+
+[widget.workspaces]
+colorize_icons = true

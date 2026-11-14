@@ -37,5 +37,9 @@
     # Kiwix
     kiwix
     kiwix-tools
+
+    # Screenshots
+    grim
+    slurp
   ];
 }

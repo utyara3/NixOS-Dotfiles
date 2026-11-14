@@ -65,10 +65,15 @@ let
     "Mod+WheelDown" = "workspace-next";
     "Mod+WheelUp" = "workspace-previous";
 
-    "Print" = "spawn noctalia msg screenshot-region";
-    "Shift+Print" = "spawn noctalia msg screenshot-fullscreen";
-    "Ctrl+Print" = "spawn noctalia msg screenshot-annotate";
-    "Mod+Print" = "spawn noctalia msg screenshot-fullscreen pick";
+    # "Print" = "spawn noctalia msg screenshot-region";
+    # "Shift+Print" = "spawn noctalia msg screenshot-fullscreen";
+    # "Ctrl+Print" = "spawn noctalia msg screenshot-annotate";
+    # "Mod+Print" = "spawn noctalia msg screenshot-fullscreen pick";
+
+    "Print" = "spawn sh -c 'grim -g \"$(slurp)\" - | wl-copy'";
+    "Shift+Print" = "spawn sh -c 'grim - | wl-copy'";
+    "Ctrl+Print" = "spawn sh -c 'grim -g \"$(slurp)\" - | wl-copy'";
+    "Mod+Print" = "spawn sh -c 'grim - | wl-copy'";
 
     "XF86AudioRaiseVolume" = "spawn wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+";
     "XF86AudioLowerVolume" = "spawn wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
