@@ -13,7 +13,6 @@
     cmatrix
     pipes-rs
     mpv
-    mpvpaper
     imv
 
     # Calculator
