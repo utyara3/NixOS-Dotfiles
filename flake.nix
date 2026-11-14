@@ -46,6 +46,10 @@
     voxtype = {
       url = "github:peteonrails/voxtype";
     };
+
+    nectarlink = {
+      url = "github:thtbee/nectarlink";
+    };
   };
 
   outputs =

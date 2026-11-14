@@ -1,6 +1,6 @@
 # home/packages/core.nix
 
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -42,5 +42,7 @@
     # Screenshots
     grim
     slurp
+
+    inputs.nectarlink.packages."${pkgs.stdenv.hostPlatform.system}".default
   ];
 }
