@@ -2,7 +2,7 @@
 
 { ... }: {
 
-  services.v2raya.enable = true;
+  services.v2raya.enable = false;
 
   networking.firewall = {
     allowedTCPPorts = [ 2017 ];
