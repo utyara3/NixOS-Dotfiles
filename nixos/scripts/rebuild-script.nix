@@ -1,70 +1,112 @@
 # nixos/scripts/rebuild-script.nix
 { pkgs }:
 
+let
+  jq = "${pkgs.jq}/bin/jq";
+in
 pkgs.writeScriptBin "nr" ''
   #!/usr/bin/env bash
   set -euo pipefail
   IFS=$'\n\t'
 
+  JQ="${jq}"
+
   CONFIG_DIR="/home/utyara3/nixos-config"
   ACTION="''${1:-switch}"
-  shift || true          # остальные аргументы пробросим в nh (--flake .#host и т.п.)
+  shift || true
 
-  # --- цвета ---
   if [ -t 2 ]; then
     RED=$'\e[31m'; YEL=$'\e[33m'; GRN=$'\e[32m'; BLU=$'\e[34m'; RST=$'\e[0m'
   else
-    RED= YEL= GRN= BLU= RST=
+    RED=; YEL=; GRN=; BLU=; RST=
   fi
-  die()  { echo "''${RED}Error:''${RST} $*"  >&2; exit 1; }
-  info() { echo "''${BLU}==>''${RST} $*"     >&2; }
+  die()  { echo "''${RED}Error:''${RST} $*"   >&2; exit 1; }
+  info() { echo "''${BLU}==>''${RST} $*"      >&2; }
   warn() { echo "''${YEL}Warning:''${RST} $*" >&2; }
+  ok()   { echo "''${GRN}✓''${RST} $*"        >&2; }
 
   case "$ACTION" in
-    switch|boot|test|build|dry-activate|rollback) ;;
-    *) die "Invalid action '$ACTION'. Options: switch, boot, test, build, dry-activate, rollback" ;;
+    switch|boot|test|build|dry-activate) ;;
+    *) die "Invalid action '$ACTION'. Options: switch, boot, test, build, dry-activate" ;;
   esac
 
   [ -d "$CONFIG_DIR" ] || die "Directory $CONFIG_DIR not found."
   cd "$CONFIG_DIR"
   export FLAKE="$CONFIG_DIR"
 
-  # --- хелперы ---
+  # --- generation detection: 3 уровня fallback ---
+  # 1) readlink (без -f!) — работает всегда, systemd сам его читает
+  # 2) list-generations --json + jq из store
+  # 3) list-generations plaintext — звёздочка склеена с номером (284*)
   get_current_gen() {
-    local target
-    target=$(readlink -f /nix/var/nix/profiles/system 2>/dev/null) || return 1
-    [[ "$target" =~ system-([0-9]+)-link ]] && echo "''${BASH_REMATCH[1]}"
+    local gen link
+
+    link=$(readlink /nix/var/nix/profiles/system 2>/dev/null || true)
+    if [[ "$link" =~ system-([0-9]+)-link ]]; then
+      echo "''${BASH_REMATCH[1]}"; return 0
+    fi
+
+    if [ -x "$JQ" ] && command -v nixos-rebuild &>/dev/null; then
+      gen=$(nixos-rebuild list-generations --json 2>/dev/null \
+        | "$JQ" -r '.[] | select(.current == true) | .generation' 2>/dev/null || true)
+      if [[ "$gen" =~ ^[0-9]+$ ]]; then echo "$gen"; return 0; fi
+    fi
+
+    if command -v nixos-rebuild &>/dev/null; then
+      # $1 == "284*" для текущего; снимаем звёздочку
+      gen=$(nixos-rebuild list-generations 2>/dev/null \
+        | awk '/\*/ && $1 ~ /^[0-9]/ { sub(/\*/, "", $1); print $1; exit }' || true)
+      if [[ "$gen" =~ ^[0-9]+$ ]]; then echo "$gen"; return 0; fi
+    fi
+
+    return 1
   }
-  in_git()  { git rev-parse --is-inside-work-tree &>/dev/null; }
+
+  in_git()      { git rev-parse --is-inside-work-tree &>/dev/null; }
   has_changes() { ! git diff --cached --quiet || ! git diff --quiet; }
 
   # --- проверки репозитория ---
   IS_GIT=false
   if in_git; then
     IS_GIT=true
-    git ls-files --unmerged | grep -q '^' && die "Unresolved merge conflicts detected."
-    [ -n "$(git status --porcelain)" ] && warn "Uncommitted changes present before rebuild."
+    if git ls-files --unmerged | grep -q '^'; then
+      die "Unresolved merge conflicts detected."
+    fi
+    if [ -n "$(git status --porcelain)" ]; then
+      warn "Uncommitted changes present before rebuild."
+    fi
   else
     warn "Not a Git repository. Auto-commit disabled."
   fi
 
-  # --- форматирование (не глотаем ошибки) ---
+  # --- форматтер ---
+  # `nix fmt` без аргументов виснет (nixfmt читает stdin).
+  # `nix fmt .` работает, но пишет deprecation warning — подавляем.
+  # timeout — страховка от зависания.
+  # Долгосрочно: добавьте в flake.nix formatter.<system> = pkgs.nixfmt-tree;
   if command -v nix &>/dev/null; then
     info "Running formatter..."
-    nix fmt . || warn "Formatter failed or nothing to format."
+    if ! timeout 60 nix fmt . >/dev/null 2>&1; then
+      warn "Formatter failed or timed out."
+    fi
   fi
 
   # --- stage для flake ---
   if [ "$IS_GIT" = true ]; then
-    # ВНИМАНИЕ: git add -A стейджит всё, включая возможные секреты.
-    # Держите .gitignore в порядке.
     git add -A
-    has_changes && { info "Staged configuration changes:"; git status --short; }
+    if has_changes; then
+      info "Staged configuration changes:"
+      git status --short
+    fi
   fi
 
   # --- запоминаем поколение ДО сборки ---
   PREV_GEN=$(get_current_gen || true)
-  info "Current generation: ''${PREV_GEN:-unknown}"
+  if [ -n "''${PREV_GEN:-}" ]; then
+    info "Current generation: $PREV_GEN"
+  else
+    warn "Could not determine current generation."
+  fi
 
   # --- сам rebuild ---
   info "Executing: nh os $ACTION $*"
@@ -72,12 +114,11 @@ pkgs.writeScriptBin "nr" ''
     die "NixOS rebuild failed. Changes aborted."
   fi
 
-  # --- пост-обработка только для реальных деплоев ---
+  # --- пост-обработка ---
   case "$ACTION" in
     switch|boot)
       NEW_GEN=$(get_current_gen || true)
 
-      # diff пакетов + сохранение для тела коммита
       NVD_OUT=""
       if [ -n "''${PREV_GEN:-}" ] && [ -n "''${NEW_GEN:-}" ] \
          && [ "$PREV_GEN" != "$NEW_GEN" ] \
@@ -89,9 +130,7 @@ pkgs.writeScriptBin "nr" ''
         echo "$NVD_OUT"
       fi
 
-      # авто-коммит
       if [ "$IS_GIT" = true ] && has_changes; then
-        # Номер ребилда = номер поколения
         REBUILD_NO=""
         if   [ -n "''${NEW_GEN:-}" ];  then REBUILD_NO="$NEW_GEN"
         elif [ -n "''${PREV_GEN:-}" ]; then REBUILD_NO=$(( PREV_GEN + 1 ))
@@ -105,13 +144,13 @@ pkgs.writeScriptBin "nr" ''
 
         if [ -n "$NVD_OUT" ]; then
           if git commit -m "$COMMIT_MSG" -m "$NVD_OUT"; then
-            info "Committed: $COMMIT_MSG"
+            ok "Committed: $COMMIT_MSG"
           else
             warn "Auto-commit failed (hooks/signing?). Changes left staged."
           fi
         else
           if git commit -m "$COMMIT_MSG"; then
-            info "Committed: $COMMIT_MSG"
+            ok "Committed: $COMMIT_MSG"
           else
             warn "Auto-commit failed (hooks/signing?). Changes left staged."
           fi
