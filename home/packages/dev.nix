@@ -16,5 +16,10 @@
 
     # Remote desk
     rustdesk-flutter
+
+    # Web
+    bruno
+    bruno-cli
+    python3Packages.locust
   ];
 }
