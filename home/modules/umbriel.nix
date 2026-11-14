@@ -114,10 +114,11 @@ in
           theme = "Bibata-Modern-Classic";
           size = 24;
           follows_focus = true;
+          warp_on_focus = true;
           hide_when_typing = true;
         };
 
-        focus.follows_mouse = true;
+        focus.follows_mouse = "sloppy";
       };
 
       appearance = {
