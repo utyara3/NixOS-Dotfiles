@@ -47,8 +47,8 @@
       "video/mp4" = [ "mpv.desktop" ];
       "text/plain" = [ "nvim.desktop" ];
 
-      # GitHub Desktop URL handlers
       "x-scheme-handler/x-github-client" = [ "github-desktop.desktop" ];
+      "x-scheme-handler/x-github-desktop-auth" = [ "github-desktop.desktop" ];
       "x-scheme-handler/x-github-desktop-dev-auth" = [ "github-desktop.desktop" ];
 
       # Zen Browser (Исправлено: теперь это списки строк)
