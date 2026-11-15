@@ -1,6 +1,11 @@
 # home/home.nix
 
-{ inputs, lib, ... }:
+{
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
 
 {
   imports = [
@@ -27,6 +32,7 @@
     DBX_CONTAINER_MANAGER = "podman";
     NIXOS_OZONE_WL = "1";
     MOZ_ENABLE_WAYLAND = "1";
+    DOTNET_ROOT = "${pkgs.dotnetCorePackages.sdk_10_0}/share/dotnet";
   };
 
   programs.home-manager.enable = true;

@@ -21,5 +21,8 @@
     bruno
     bruno-cli
     python3Packages.locust
+
+    # .NET SDK 10
+    dotnetCorePackages.sdk_10_0
   ];
 }
