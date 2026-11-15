@@ -27,6 +27,11 @@
     dotnetCorePackages.sdk_10_0
 
     # Github
-    github-desktop
+    # github-desktop
+    (github-desktop.overrideAttrs (old: {
+      postPatch = (old.postPatch or "") + ''
+        ${pkgs.python3}/bin/python3 ${./patches/github-desktop-oauth.py}
+      '';
+    }))
   ];
 }
