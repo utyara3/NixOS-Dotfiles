@@ -24,5 +24,8 @@
 
     # .NET SDK 10
     dotnetCorePackages.sdk_10_0
+
+    # Github
+    github-desktop
   ];
 }
