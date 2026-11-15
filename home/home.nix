@@ -33,6 +33,7 @@
     NIXOS_OZONE_WL = "1";
     MOZ_ENABLE_WAYLAND = "1";
     DOTNET_ROOT = "${pkgs.dotnetCorePackages.sdk_10_0}/share/dotnet";
+    DOTNET_ROOT_X64 = "${pkgs.dotnetCorePackages.sdk_10_0}/share/dotnet";
   };
 
   programs.home-manager.enable = true;
