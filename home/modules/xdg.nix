@@ -16,6 +16,7 @@
 
   xdg.portal = {
     enable = true;
+    xdgOpenUsePortal = true;
     extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
     config = {
       common = {
@@ -46,12 +47,16 @@
       "video/mp4" = [ "mpv.desktop" ];
       "text/plain" = [ "nvim.desktop" ];
 
-      # Zen Browser
+      # GitHub Desktop URL handlers
+      "x-scheme-handler/x-github-client" = [ "github-desktop.desktop" ];
+      "x-scheme-handler/x-github-desktop-dev-auth" = [ "github-desktop.desktop" ];
+
+      # Zen Browser (Исправлено: теперь это списки строк)
       "text/html" = [ "zen-beta.desktop" ];
-      "x-scheme-handler/http" = "zen-beta.desktop";
-      "x-scheme-handler/https" = "zen-beta.desktop";
-      "x-scheme-handler/about" = "zen-beta.desktop";
-      "x-scheme-handler/unknown" = "zen-beta.desktop";
+      "x-scheme-handler/http" = [ "zen-beta.desktop" ];
+      "x-scheme-handler/https" = [ "zen-beta.desktop" ];
+      "x-scheme-handler/about" = [ "zen-beta.desktop" ];
+      "x-scheme-handler/unknown" = [ "zen-beta.desktop" ];
     };
   };
 }
