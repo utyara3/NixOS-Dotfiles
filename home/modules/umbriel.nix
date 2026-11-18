@@ -107,7 +107,7 @@ in
           options = desktop.keyboard.options;
         };
 
-        mouse.natural_scroll = true;
+        # mouse.natural_scroll = true;
 
         touchpad = {
           natural_scroll = true;
